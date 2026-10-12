@@ -1,0 +1,23 @@
+{
+  "phi": "/kaggle/working/BTL-LinCIR/experiments/runs/EXP-003-gapnoise-s12345/checkpoints/phi_latest.pt",
+  "clip_model_name": "large",
+  "device": "cuda",
+  "circo_map_at5": 11.149368686868687,
+  "circo_map_at10": 12.476436487894818,
+  "circo_map_at25": 14.436212940321905,
+  "circo_map_at50": 15.218067683896122,
+  "circo_recall_at5": 25.454545454545453,
+  "circo_recall_at10": 37.27272727272727,
+  "circo_recall_at25": 53.63636363636364,
+  "circo_recall_at50": 63.18181818181819,
+  "circo_n_queries": 220,
+  "shirt_fiq_recall_at10": 29.29342492639843,
+  "shirt_fiq_recall_at50": 47.79195289499509,
+  "dress_fiq_recall_at10": 21.219633118492812,
+  "dress_fiq_recall_at50": 43.33168071393158,
+  "toptee_fiq_recall_at10": 29.117797042325343,
+  "toptee_fiq_recall_at50": 49.46455889852116,
+  "average_fiq_recall_at10": 26.543618362405528,
+  "average_fiq_recall_at50": 46.862730835815945,
+  "eval_minutes": 5.0
+}

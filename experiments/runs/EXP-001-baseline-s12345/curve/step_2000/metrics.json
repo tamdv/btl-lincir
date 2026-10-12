@@ -1,0 +1,14 @@
+{
+  "phi": "experiments/runs/EXP-001-baseline-s12345/checkpoints/phi_000002000.pt",
+  "clip_model_name": "large",
+  "device": "cuda",
+  "shirt_fiq_recall_at10": 27.57605495583906,
+  "shirt_fiq_recall_at50": 45.19136408243376,
+  "dress_fiq_recall_at10": 20.079325731284083,
+  "dress_fiq_recall_at50": 40.60485870104115,
+  "toptee_fiq_recall_at10": 26.976032636409997,
+  "toptee_fiq_recall_at50": 47.67975522692504,
+  "average_fiq_recall_at10": 24.877137774511045,
+  "average_fiq_recall_at50": 44.49199267013332,
+  "eval_minutes": 4.7
+}

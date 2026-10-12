@@ -1,0 +1,14 @@
+exp: EXP-900
+name: smoke
+description: Chạy thử quy trình trên dữ liệu giả — số liệu vô nghĩa
+seeds: [12345]
+train_args:
+  clip_model_name: base
+  batch_size: 16
+  num_workers: 0
+  lr_scheduler: constant_with_warmup
+  lr_warmup_steps: 0
+  max_train_steps: 20
+  validation_steps: 10
+  checkpointing_steps: 10
+  train_captions_file: experiments/toy/captions.txt

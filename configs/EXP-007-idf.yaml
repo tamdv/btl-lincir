@@ -1,0 +1,19 @@
+exp: EXP-007
+name: idf
+description: Cải tiến C (dự phòng) — chỉ che 50% từ khóa IDF cao nhất
+seeds: [12345, 2024, 7]
+train_args:
+  clip_model_name: large
+  batch_size: 512
+  mixed_precision: fp16
+  num_workers: 4
+  learning_rate: 1.0e-4
+  weight_decay: 0.01
+  phi_dropout: 0.5
+  lr_scheduler: constant_with_warmup
+  lr_warmup_steps: 0
+  max_train_steps: 5000
+  validation_steps: 500
+  checkpointing_steps: 500
+  idf_path: experiments/idf_3corpora.json
+  idf_keep_ratio: 0.5

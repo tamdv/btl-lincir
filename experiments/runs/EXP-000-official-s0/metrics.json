@@ -1,0 +1,23 @@
+{
+  "phi": "official-large",
+  "clip_model_name": "large",
+  "device": "cuda",
+  "circo_map_at5": 10.502146464646463,
+  "circo_map_at10": 12.218526034151033,
+  "circo_map_at25": 13.76631338276615,
+  "circo_map_at50": 14.486434266786329,
+  "circo_recall_at5": 21.363636363636363,
+  "circo_recall_at10": 35.90909090909091,
+  "circo_recall_at25": 50.90909090909091,
+  "circo_recall_at50": 62.727272727272734,
+  "circo_n_queries": 220,
+  "shirt_fiq_recall_at10": 28.704612365063788,
+  "shirt_fiq_recall_at50": 46.761530912659474,
+  "dress_fiq_recall_at10": 21.31879028259792,
+  "dress_fiq_recall_at50": 42.191373326722854,
+  "toptee_fiq_recall_at10": 29.01580826109128,
+  "toptee_fiq_recall_at50": 49.41356450790413,
+  "average_fiq_recall_at10": 26.346403636250997,
+  "average_fiq_recall_at50": 46.122156249095475,
+  "eval_minutes": 16.33
+}

@@ -1,0 +1,116 @@
+7.3s 1 0.00s - Debugger warning: It seems that frozen modules are being used, which may
+7.3s 2 0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+7.3s 3 0.00s - to python to disable frozen modules.
+7.3s 4 0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+7.9s 5 0.00s - Debugger warning: It seems that frozen modules are being used, which may
+7.9s 6 0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+7.9s 7 0.00s - to python to disable frozen modules.
+7.9s 8 0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+13.9s 9 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 75.0/75.0 kB 2.8 MB/s eta 0:00:00
+31.1s 10 'Restart kernel' or 'Restart runtime' option.
+43.4s 11 python 3.13.15 | torch 2.11.0+cu128 | transformers 5.16.1 | accelerate 1.14.0 | GPUs 2
+73.4s 12 [1] max |HF - ours| = 0.00e+00
+73.4s 13 [2] eval tokenizer puts '$' at id 259: True
+73.4s 14 [3] training tokenizer maps '[$]' to 49408 (remapped to 259): True  ids=[49406, 49408, 16610, 525, 49408, 49407]
+73.4s 15 [4] pseudo token embedding affects the output: True
+73.4s 16 PASS
+73.6s 17 toy data in experiments/toy
+73.7s 18 >> /usr/bin/python3 scripts/run_experiment.py configs/EXP-900-smoke.yaml --seed 12345 --nproc 1 --owner Tam --suffix=-kaggle-base --cirr /kaggle/working/BTL-LinCIR/experiments/toy/CIRR --fiq /kaggle/working/BTL-LinCIR/experiments/toy/FashionIQ
+118.1s 19 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+118.1s 20 File "/usr/local/lib/python3.13/dist-packages/accelerate/tracking.py", line 89, in execute_on_main_process
+118.1s 21 return PartialState().on_main_process(function)(self, *args, **kwargs)
+118.1s 22 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+118.1s 23 File "/usr/local/lib/python3.13/dist-packages/accelerate/tracking.py", line 228, in store_init_configuration
+118.1s 24 self.writer.add_hparams(values, metric_dict={})
+118.1s 25 ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+118.1s 26 File "/usr/local/lib/python3.13/dist-packages/torch/utils/tensorboard/writer.py", line 338, in add_hparams
+118.1s 27 exp, ssi, sei = hparams(hparam_dict, metric_dict, hparam_domain_discrete)
+118.1s 28 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+118.1s 29 File "/usr/local/lib/python3.13/dist-packages/torch/utils/tensorboard/summary.py", line 322, in hparams
+118.1s 30 raise ValueError(
+118.1s 31 "value should be one of int, float, str, bool, or torch.Tensor"
+118.1s 32 )
+118.1s 33 ValueError: value should be one of int, float, str, bool, or torch.Tensor
+118.1s 34 [FAILED] 0.7 phút
+118.1s 35 >> /usr/bin/python3 scripts/run_experiment.py configs/EXP-900-smoke.yaml --seed 12345 --nproc 1 --owner Tam --suffix=-kaggle-large --cirr /kaggle/working/BTL-LinCIR/experiments/toy/CIRR --fiq /kaggle/working/BTL-LinCIR/experiments/toy/FashionIQ --set clip_model_name=large batch_size=512 mixed_precision=fp16 num_workers=4 max_train_steps=60 validation_steps=30 checkpointing_steps=30
+147.3s 36 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+147.3s 37 File "/usr/local/lib/python3.13/dist-packages/accelerate/tracking.py", line 89, in execute_on_main_process
+147.3s 38 return PartialState().on_main_process(function)(self, *args, **kwargs)
+147.3s 39 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+147.3s 40 File "/usr/local/lib/python3.13/dist-packages/accelerate/tracking.py", line 228, in store_init_configuration
+147.3s 41 self.writer.add_hparams(values, metric_dict={})
+147.3s 42 ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+147.3s 43 File "/usr/local/lib/python3.13/dist-packages/torch/utils/tensorboard/writer.py", line 338, in add_hparams
+147.3s 44 exp, ssi, sei = hparams(hparam_dict, metric_dict, hparam_domain_discrete)
+147.3s 45 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+147.3s 46 File "/usr/local/lib/python3.13/dist-packages/torch/utils/tensorboard/summary.py", line 322, in hparams
+147.3s 47 raise ValueError(
+147.3s 48 "value should be one of int, float, str, bool, or torch.Tensor"
+147.3s 49 )
+147.3s 50 ValueError: value should be one of int, float, str, bool, or torch.Tensor
+147.3s 51 [FAILED] 0.5 phút
+147.3s 52 >> /usr/bin/python3 scripts/run_experiment.py configs/EXP-900-smoke.yaml --seed 12345 --nproc 1 --owner Tam --suffix=-kaggle-large-A --cirr /kaggle/working/BTL-LinCIR/experiments/toy/CIRR --fiq /kaggle/working/BTL-LinCIR/experiments/toy/FashionIQ --set clip_model_name=large batch_size=512 mixed_precision=fp16 num_workers=4 max_train_steps=60 validation_steps=30 checkpointing_steps=30 infonce_weight=0.5
+168.2s 53 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+168.2s 54 File "/usr/local/lib/python3.13/dist-packages/accelerate/tracking.py", line 89, in execute_on_main_process
+168.2s 55 return PartialState().on_main_process(function)(self, *args, **kwargs)
+168.2s 56 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+168.2s 57 File "/usr/local/lib/python3.13/dist-packages/accelerate/tracking.py", line 228, in store_init_configuration
+168.2s 58 self.writer.add_hparams(values, metric_dict={})
+168.2s 59 ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+168.2s 60 File "/usr/local/lib/python3.13/dist-packages/torch/utils/tensorboard/writer.py", line 338, in add_hparams
+168.2s 61 exp, ssi, sei = hparams(hparam_dict, metric_dict, hparam_domain_discrete)
+168.2s 62 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+168.2s 63 File "/usr/local/lib/python3.13/dist-packages/torch/utils/tensorboard/summary.py", line 322, in hparams
+168.2s 64 raise ValueError(
+168.2s 65 "value should be one of int, float, str, bool, or torch.Tensor"
+168.2s 66 )
+168.2s 67 ValueError: value should be one of int, float, str, bool, or torch.Tensor
+168.2s 68 [FAILED] 0.3 phút
+168.2s 69 >> /usr/bin/python3 scripts/run_experiment.py configs/EXP-000-official.yaml --seed 0 --nproc 1 --owner Tam --suffix=-kaggle-toy --cirr /kaggle/working/BTL-LinCIR/experiments/toy/CIRR --fiq /kaggle/working/BTL-LinCIR/experiments/toy/FashionIQ
+196.5s 70 "cirr_group_recall_at2": 96.66666666666667,
+196.5s 71 "cirr_group_recall_at3": 100.0,
+196.5s 72 "cirr_n_queries": 30,
+196.5s 73 "shirt_fiq_recall_at10": 100.0,
+196.5s 74 "shirt_fiq_recall_at50": 100.0,
+196.5s 75 "dress_fiq_recall_at10": 100.0,
+196.5s 76 "dress_fiq_recall_at50": 100.0,
+196.5s 77 "toptee_fiq_recall_at10": 100.0,
+196.5s 78 "toptee_fiq_recall_at50": 100.0,
+196.5s 79 "average_fiq_recall_at10": 100.0,
+196.5s 80 "average_fiq_recall_at50": 100.0,
+196.5s 81 "eval_minutes": 0.26
+196.5s 82 }
+196.5s 83 
+196.5s 84 [done] EXP-000-official-s0-kaggle-toy -> /kaggle/working/BTL-LinCIR/experiments/runs/EXP-000-official-s0-kaggle-toy
+196.5s 85 [OK] 0.5 phút
+197.4s 86 Traceback (most recent call last):
+197.4s 87 File "<string>", line 1, in <module>
+197.4s 88 import sys;import papermill as pm;pm.execute_notebook("__notebook__.ipynb","__notebook__.ipynb",progress_bar=False,log_output=True,stdout_file=sys.stdout,stderr_file=sys.stderr,allow_errors=False,timeout=43200)
+197.4s 89 ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+197.4s 90 File "/usr/local/lib/python3.13/dist-packages/papermill/execute.py", line 131, in execute_notebook
+197.4s 91 raise_for_execution_errors(nb, output_path)
+197.4s 92 ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+197.4s 93 File "/usr/local/lib/python3.13/dist-packages/papermill/execute.py", line 251, in raise_for_execution_errors
+197.4s 94 raise error
+197.4s 95 papermill.exceptions.PapermillExecutionError:
+197.4s 96 ---------------------------------------------------------------------------
+197.4s 97 Exception encountered at "In [5]":
+197.4s 98 ---------------------------------------------------------------------------
+197.4s 99 FileNotFoundError                         Traceback (most recent call last)
+197.4s 100 /tmp/ipykernel_23/2326928195.py in <cell line: 0>()
+197.4s 101 11     ok4 = run_exp("configs/EXP-000-official.yaml", 0, TOY_C, TOY_F, "-kaggle-toy")             # nạp checkpoint chính thức
+197.4s 102 12     show("EXP-900-smoke-s12345-kaggle-large")
+197.4s 103 ---> 13     tm = json.load(open("experiments/runs/EXP-900-smoke-s12345-kaggle-large/train_metrics.json"))
+197.4s 104 14     hist = tm["history"]
+197.4s 105 15     # thời gian/bước thuần train (bỏ phần validate): lấy chênh lệch giữa 2 lần validate cuối
+197.4s 106 
+197.4s 107 FileNotFoundError: [Errno 2] No such file or directory: 'experiments/runs/EXP-900-smoke-s12345-kaggle-large/train_metrics.json'
+197.4s 108 
+199.5s 109 /usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\|'
+199.5s 110 cells[i][c] = re.sub('\\\\\|', '|', cell)
+199.7s 111 /usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\_'
+199.7s 112 text = re.sub(r'_', '\_', text) # Escape underscores in display text
+200.4s 113 [NbConvertApp] Converting notebook __notebook__.ipynb to notebook
+200.5s 114 [NbConvertApp] Writing 24019 bytes to __notebook__.ipynb
+203.0s 115 [NbConvertApp] Converting notebook __notebook__.ipynb to html
+203.5s 116 [NbConvertApp] Writing 323143 bytes to __results__.html

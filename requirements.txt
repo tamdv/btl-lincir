@@ -1,0 +1,13 @@
+# [NHOM8] Tested on Mac M1 (Python 3.14) with the versions in comments; Kaggle ships its own torch.
+torch>=2.1            # tested 2.14.1 (Mac), Kaggle 2.11.0+cu128
+torchvision           # tested 0.29.1
+transformers>=4.40    # tested 5.19.0; models.py picks dtype/torch_dtype by version
+accelerate>=0.25      # tested 1.15.0
+datasets>=2.14        # tested 5.1.0
+spacy>=3.7            # tested 3.8.16; then: python -m spacy download en_core_web_sm
+webdataset            # tested 1.0.2 (imported by loader.py)
+scipy                 # tested 1.18.1 (Wilcoxon in scripts/stats_compare.py)
+pillow
+tqdm
+tensorboard           # optional; tested 2.x — Kaggle has it preinstalled (train_phi logs to it)
+# OpenAI `clip` is NOT required: code/compat.py replaces clip.tokenize with the HF tokenizer.

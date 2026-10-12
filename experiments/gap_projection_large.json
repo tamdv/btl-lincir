@@ -1,0 +1,30 @@
+{
+  "clip_model_name": "large",
+  "n_pairs": 5000,
+  "clip_gap": {
+    "centroid_gap": 0.8214665651321411,
+    "paired_cosine": 0.25562602281570435
+  },
+  "projection": {
+    "official": {
+      "paired_cosine": 0.8102298378944397,
+      "centroid_gap": 0.27612629532814026
+    },
+    "baseline": {
+      "paired_cosine": 0.8012450933456421,
+      "centroid_gap": 0.29438456892967224
+    },
+    "A": {
+      "paired_cosine": 0.6380707621574402,
+      "centroid_gap": 0.33110511302948
+    },
+    "B": {
+      "paired_cosine": 0.8412879705429077,
+      "centroid_gap": 0.2515043020248413
+    },
+    "A+B": {
+      "paired_cosine": 0.6877468228340149,
+      "centroid_gap": 0.32991233468055725
+    }
+  }
+}

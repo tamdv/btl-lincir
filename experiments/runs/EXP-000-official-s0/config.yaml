@@ -1,0 +1,10 @@
+exp: EXP-000
+name: official
+description: Checkpoint chính thức LinCIR ViT-L (navervision), chỉ đánh giá — đối
+  chiếu với bài báo
+seeds:
+- 0
+eval_only: official-large
+clip_model_name: large
+train_args: {}
+seed: 0

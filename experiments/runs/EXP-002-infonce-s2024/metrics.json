@@ -1,0 +1,23 @@
+{
+  "phi": "/kaggle/working/BTL-LinCIR/experiments/runs/EXP-002-infonce-s2024/checkpoints/phi_latest.pt",
+  "clip_model_name": "large",
+  "device": "cuda",
+  "circo_map_at5": 8.418813131313133,
+  "circo_map_at10": 10.089070051421242,
+  "circo_map_at25": 11.796702676286785,
+  "circo_map_at50": 12.588972096844234,
+  "circo_recall_at5": 17.272727272727273,
+  "circo_recall_at10": 32.72727272727273,
+  "circo_recall_at25": 48.63636363636364,
+  "circo_recall_at50": 61.36363636363637,
+  "circo_n_queries": 220,
+  "shirt_fiq_recall_at10": 28.802747791952893,
+  "shirt_fiq_recall_at50": 45.7801766437684,
+  "dress_fiq_recall_at10": 20.2776400594943,
+  "dress_fiq_recall_at50": 41.34853743182945,
+  "toptee_fiq_recall_at10": 27.63895971443141,
+  "toptee_fiq_recall_at50": 47.730749617542074,
+  "average_fiq_recall_at10": 25.57311585529287,
+  "average_fiq_recall_at50": 44.95315456437998,
+  "eval_minutes": 5.0
+}

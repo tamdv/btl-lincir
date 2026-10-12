@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git rev-parse:*)",
+      "Bash(nvidia-smi:*)",
+      "Bash(pip list:*)",
+      "Bash(pip show:*)",
+      "Bash(python scripts/stats_compare.py:*)",
+      "Bash(pdftotext:*)"
+    ]
+  }
+}

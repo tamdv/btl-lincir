@@ -1,0 +1,31 @@
+# dữ liệu và mô hình lớn
+data/*
+!data/README.md
+code/datasets/
+code/hf_models/
+**/*.pt
+**/*.pth
+**/*.ckpt
+experiments/runs/*/logs/
+code/submission/
+# python
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+# hệ thống
+.DS_Store
+.claude/settings.local.json
+experiments/toy/
+experiments/feature_cache/
+experiments/smoke/
+dist/
+# kết quả thô tải từ Kaggle (đã giải nén vào experiments/; bản smoke 249 MB vượt giới hạn GitHub)
+notebooks/results_*.zip
+# file khóa của Word/PowerPoint khi đang mở
+~$*
+# bản sao lưu tạm trước mỗi lần sửa tự động (lịch sử git thay thế)
+report/*_banTam_*.docx
+report/*_truocKhi*.docx
+slides/*_banTam_*.pptx
+slides/*_truocKhi*.pptx

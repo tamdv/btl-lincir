@@ -1,0 +1,14 @@
+{
+  "phi": "experiments/runs/EXP-002-infonce-s12345/checkpoints/phi_000002000.pt",
+  "clip_model_name": "large",
+  "device": "cuda",
+  "shirt_fiq_recall_at10": 28.45927379784102,
+  "shirt_fiq_recall_at50": 46.123650637880274,
+  "dress_fiq_recall_at10": 18.889439762022807,
+  "dress_fiq_recall_at50": 39.46455131383242,
+  "toptee_fiq_recall_at10": 26.31310555838858,
+  "toptee_fiq_recall_at50": 48.34268230494646,
+  "average_fiq_recall_at10": 24.553939706084133,
+  "average_fiq_recall_at50": 44.643628085553054,
+  "eval_minutes": 5.03
+}

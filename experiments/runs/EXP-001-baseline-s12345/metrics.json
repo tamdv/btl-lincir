@@ -1,0 +1,23 @@
+{
+  "phi": "/kaggle/working/BTL-LinCIR/experiments/runs/EXP-001-baseline-s12345/checkpoints/phi_latest.pt",
+  "clip_model_name": "large",
+  "device": "cuda",
+  "circo_map_at5": 10.50050505050505,
+  "circo_map_at10": 11.808409277010467,
+  "circo_map_at25": 13.418973443042598,
+  "circo_map_at50": 14.169803651540871,
+  "circo_recall_at5": 22.272727272727273,
+  "circo_recall_at10": 33.63636363636363,
+  "circo_recall_at25": 49.09090909090909,
+  "circo_recall_at50": 63.18181818181819,
+  "circo_n_queries": 220,
+  "shirt_fiq_recall_at10": 28.60647693817468,
+  "shirt_fiq_recall_at50": 46.61432777232581,
+  "dress_fiq_recall_at10": 21.120475954387704,
+  "dress_fiq_recall_at50": 42.09221616261775,
+  "toptee_fiq_recall_at10": 28.148903620601732,
+  "toptee_fiq_recall_at50": 48.64864864864865,
+  "average_fiq_recall_at10": 25.95861883772137,
+  "average_fiq_recall_at50": 45.78506419453074,
+  "eval_minutes": 5.35
+}
