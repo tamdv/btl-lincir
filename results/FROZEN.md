@@ -43,9 +43,14 @@
 | `results/figures/learning_curve.png` | `029dc54fb546cc7e` |
 | `results/figures/qualitative_fiq_1.png` | `f14ac7daa94cb5e8` |
 | `report/BaoCao_Nhom8_LinCIR.docx` | `b6c33a3fe91515ed` |
-| `slides/Slides_Nhom8_LinCIR.pptx` | `7cc22e1866ba7568` |
+| `slides/Slides_Nhom8_LinCIR.pptx` | `c67d862332e05ed5` |
 
 Ghi chú: `report/…docx` và `slides/…pptx` là bản Tâm sửa tay đã điền kết quả; chỉnh sửa trình bày sau khi chốt vẫn được phép nếu không đổi số liệu. 15:20 09/10/2026: chèn lại trường MỤC LỤC (bị mất từ bản 08/10), bỏ khoảng cách sau đoạn của style TOC 1/2 để mục lục vừa 1 trang; số liệu không đổi.
 
 - 09/10/2026: slides chỉ đổi ghi chú người nói sang lời thường (không đổi số liệu) → SHA-256 mới của `slides/Slides_Nhom8_LinCIR.pptx`: `3aa5b74816a5fb99`.
 - 09/10/2026: ghi chú người nói viết lại theo văn phong nghiêm túc, không ví von (không đổi số liệu) → SHA-256 mới: `2d94333bfb0c8c50`.
+12/10/2026: đổi thứ tự slide và người trình bày để mỗi người nói một khối liền, Tâm mở đầu và trình bày bài toán CIR, cân lại thời lượng (Tâm, Dũng, Tùng tăng; Trung, Nou giảm); số liệu không đổi.
+12/10/2026: thêm slide 2 (tóm tắt bài báo, số liệu lấy từ bài báo LinCIR) và slide 3 (lộ trình); slide thiết lập ghi rõ 4 biến thể baseline, A, B, A+B; số liệu thực nghiệm không đổi.
+12/10/2026: cắt còn 15 slide (bỏ slide lộ trình, vì sao zero-shot, hạn chế Pic2Word/SEARLE, nhiễu & modality gap; nội dung gộp vào slide 2, 3, 5, 7 và lời nói); số liệu thực nghiệm không đổi.
+12/10/2026: font: theme slide và ghi chú đổi Calibri → Helvetica, dấu đầu dòng gán Helvetica, thay ký tự mũi tên (Helvetica không có) bằng › hoặc chữ; số liệu không đổi.
+12/10/2026: viết lại chữ trên slide thành câu đủ ý (bỏ viết tắt khó hiểu), nới khung thẻ slide 2, 8, 10; số liệu không đổi.

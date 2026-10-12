@@ -111,6 +111,7 @@ def bullets(slide, x, y, w, h, items, size=22, gap=10):
         pPr.set("indent", str(-Inches(0.32)))
         bu = etree.SubElement(pPr, "{http://schemas.openxmlformats.org/drawingml/2006/main}buClr")
         etree.SubElement(bu, "{http://schemas.openxmlformats.org/drawingml/2006/main}srgbClr").set("val", "1E6FE8")
+        etree.SubElement(pPr, "{http://schemas.openxmlformats.org/drawingml/2006/main}buFont").set("typeface", FONT)  # [NHOM8] else "•" falls back to Times
         etree.SubElement(pPr, "{http://schemas.openxmlformats.org/drawingml/2006/main}buChar").set("char", "•")
         runs = it if isinstance(it, list) else [(it, {})]
         for t, o in runs:

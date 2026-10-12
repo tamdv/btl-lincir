@@ -48,7 +48,7 @@ MEMBERS = {
 "Tam": {
     "name": "Đào Văn Tâm", "id": "B25CHHT112",
     "role": "Chuyển đổi mã nguồn LinCIR sang môi trường mới, kiểm chứng tương đương với mô hình gốc; vận hành thực nghiệm trên Kaggle: lập lịch chạy song song trong hạn mức GPU, khắc phục nghẽn nạp dữ liệu.",
-    "slides": [("1", "Bìa, giới thiệu nhóm", "0:20"), ("9", "Dựng mã nguồn", "1:00"), ("13", "Thiết lập thực nghiệm", "0:45")],
+    "slides": [("1", "Bìa, giới thiệu nhóm", "0:20"), ("2", "Tóm tắt bài báo, lộ trình, kết luận chính", "1:15"), ("9", "Dựng mã nguồn", "1:00"), ("10", "Thiết lập thực nghiệm", "0:45"), ("15", "Điều phối hỏi đáp", "—")],
     "theory": [
         ("Bộ mã hóa văn bản của CLIP", [
             "Câu → tokenizer BPE → chuỗi mã token (tối đa 77, bắt đầu 49406, kết thúc EOS 49407) → lớp nhúng token + nhúng vị trí → 12 khối Transformer có **mặt nạ nhân quả** (mỗi token chỉ nhìn các token phía trước) → LayerNorm cuối → lấy vector tại vị trí EOS → phép chiếu tuyến tính → vector văn bản z_c (768 chiều với ViT-L).",
@@ -83,9 +83,11 @@ MEMBERS = {
               "scripts/run_experiment.py, scripts/kaggle_jobs.py, notebooks/kaggle_lincir.ipynb — chạy thí nghiệm, lập lịch, carry-forward",
               "docs/decisions.md — lý do của từng quyết định"],
     "script": [
-        ("1", "Giới thiệu đề tài, môn học, giảng viên và 5 thành viên; nêu một câu mục tiêu: tái hiện và cải tiến LinCIR, chứng minh bằng kiểm định thống kê."),
-        ("9", "Mã gốc viết cho transformers 4.34, không chạy trên môi trường hiện tại. Nhóm viết lại encoder từ các mô-đun con, thay tokenizer và sửa 4 lỗi. Bằng chứng: sai lệch 0 so với CLIP gốc, checkpoint chính thức nạp khớp, kết quả khớp bài báo (chuyển sang Tùng). Nêu 3 điểm khác giữa bài báo và mã nguồn để giải thích vì sao baseline theo mã."),
-        ("13", "Thiết lập: Kaggle 2 × T4; mỗi biến thể 3 seed, 5.000 bước, cùng siêu tham số, checkpoint bước cuối; FashionIQ + CIRCO. Nêu hai vấn đề vận hành và cách giải: giới hạn 12 giờ/30 giờ (lập lịch có ước lượng thời gian), nghẽn CPU (spaCy theo lô, ×3,1, kết quả giống hệt)."),
+        ("1", "Giới thiệu đề tài, môn học, giảng viên và 5 thành viên (khoảng 20 giây)."),
+        ("2", "Tóm tắt bài báo: tác giả, hội nghị; vấn đề (bộ ba đắt, Pic2Word/SEARLE cần ảnh và câu mẫu cố định); ý tưởng (Self-Masking Projection chỉ dùng văn bản, nhiễu u·ε cho modality gap); kết quả bài báo (tốt nhất 4 benchmark, nhanh hơn Pic2Word 6 lần, SEARLE 8,4 lần). Mã nguồn công khai là cơ sở để nhóm dựng lại, tái hiện, cải tiến. Dòng cuối là lộ trình của nhóm; nêu trước kết luận chính: B tốt hơn có ý nghĩa thống kê (FashionIQ R@10 +0,60, p = 0,006), A làm giảm hiệu năng (CIRCO mAP@5 −2,45). Chuyển sang Nou: bài toán CIR."),
+        ("9", "Mã gốc viết cho transformers 4.34, không chạy trên môi trường hiện tại. Nhóm viết lại encoder từ các mô-đun con, thay tokenizer và sửa 4 lỗi. Bằng chứng: sai lệch 0 so với CLIP gốc, checkpoint chính thức nạp khớp, kết quả khớp bài báo. Nêu 3 điểm khác giữa bài báo và mã nguồn để giải thích vì sao baseline theo mã."),
+        ("10", "Thiết lập: Kaggle 2 × T4; mỗi biến thể 3 seed, 5.000 bước, cùng siêu tham số, checkpoint bước cuối; FashionIQ + CIRCO. Nêu hai vấn đề vận hành và cách giải: giới hạn 12 giờ/30 giờ (lập lịch có ước lượng thời gian), nghẽn CPU (spaCy theo lô, ×3,1, kết quả giống hệt)."),
+        ("15", "Mời câu hỏi; nghe hết câu hỏi rồi chuyển cho đúng người: phương pháp, cải tiến A → Trung; tái hiện, bảng kết quả → Tùng; độ đo, kiểm định, cải tiến B, cơ chế → Dũng; bài toán, lý thuyết, ví dụ định tính → Nou; mã nguồn, Kaggle, thiết lập → Tâm."),
     ],
     "qa": [
         ("Làm sao chắc encoder viết lại cho kết quả giống bản gốc?", "So trực tiếp vector đầu ra với CLIPTextModelWithProjection gốc trên cùng đầu vào: sai lệch lớn nhất 0,00 trên cả ViT-B/32 và ViT-L/14. Thêm vào đó, checkpoint chính thức tái hiện khớp bài báo (lệch ≤ 0,77 điểm) và đánh giá lặp lại cho thứ hạng từng truy vấn giống hệt."),
@@ -100,12 +102,12 @@ MEMBERS = {
               "Giải thích vì sao sai lệch 0 là bằng chứng đủ mạnh, và còn những bằng chứng nào khác.",
               "Nói được tốc độ trước/sau tối ưu và vì sao kết quả không đổi.",
               "Giải thích cách tính hạn mức Kaggle và cơ chế không để phiên bị cắt."],
-    "read": ["Báo cáo: mục 3.5, 5.1, 5.3; docs/decisions.md", "Bài báo LinCIR: mục 3.1, 4.1", "CLIP (Radford 2021): mục 2.3 (kiến trúc encoder văn bản)"],
+    "read": ["Báo cáo: chương 1, mục 3.1, 3.5, 5.1, 5.3; docs/decisions.md", "Bài báo LinCIR: Tóm tắt (Abstract), mục 1 (đóng góp), 3.1, 4.1", "CLIP (Radford 2021): mục 2.3 (kiến trúc encoder văn bản)", "README.md: bảng kết quả cần nhớ (để nêu kết luận chính ở slide 2)"],
 },
 "Trung": {
     "name": "Lâm Thành Trung", "id": "B25CHHT117",
     "role": "Đề xuất và cài đặt cải tiến A (bổ sung InfoNCE vào SMP); phân tích đường học theo số bước huấn luyện.",
-    "slides": [("5", "Ý tưởng token giả", "1:00"), ("6", "Hạn chế Pic2Word/SEARLE", "0:40"), ("7", "LinCIR: Self-Masking Projection", "1:30"), ("8", "Nhiễu & modality gap", "0:45"), ("11", "Cải tiến A: InfoNCE", "1:00")],
+    "slides": [("5", "LinCIR: Self-Masking Projection", "1:30"), ("6", "Cải tiến A: InfoNCE", "1:00")],
     "theory": [
         ("Token giả (textual inversion)", [
             "Biểu diễn một ảnh như một “từ” [$] trong không gian token của CLIP; ghép vào câu “a photo of [$] that {điều chỉnh}”, bộ mã hóa văn bản tự “hiểu” ảnh và phần thay đổi, tạo vector truy vấn để tìm ảnh. Cần học mạng chiếu φ: vector → token.",
@@ -134,11 +136,8 @@ MEMBERS = {
     ],
     "files": ["code/train_phi.py — hàm mất mát (tìm comment # [NHOM8] Improvement A)", "configs/EXP-002-infonce.yaml", "results/figures/learning_curve.png (sau phiên eval)"],
     "script": [
-        ("5", "Ý tưởng: ảnh → [$] trong không gian token; câu “a photo of [$] that …” → vector truy vấn → tìm ảnh. Chỉ cần học φ."),
-        ("6", "Pic2Word/SEARLE: câu mẫu cố định, cần ảnh khi huấn luyện → kém linh hoạt, tốn tài nguyên."),
-        ("7", "LinCIR thay ảnh bằng chính câu văn: che từ khóa bằng [$] = φ(z_c), ép ẑ_c ≈ z_c. Giải thích ví dụ “[$] sleeps on [$]” và vì sao [$] học được “tóm tắt một từ”."),
-        ("8", "Khi suy luận φ nhận vector ảnh; ảnh và văn bản của CLIP nằm ở hai vùng khác nhau (modality gap) → thêm nhiễu u·ε khi train để φ chịu được."),
-        ("11", "Vấn đề: MSE không phân biệt, trong khi đánh giá là xếp hạng. Giải pháp: + λ·InfoNCE với 511 mẫu âm, τ = 0,07. Chi phí chỉ +2%/bước. Kết quả: A không tốt hơn trên FashionIQ (R@10 25,54 so với 25,90) và giảm CIRCO mAP@5 2,45 điểm — nói thẳng H1 bị bác bỏ; nguyên nhân Dũng giải thích ở slide 15."),
+        ("5", "Mở đầu phần phương pháp: Pic2Word/SEARLE cần ảnh khi huấn luyện và chỉ học câu mẫu cố định (ảnh CC3M 430 GB, chú thích 125 MB). LinCIR thay ảnh bằng chính câu văn: che từ khóa bằng [$] = φ(z_c), ép ẑ_c ≈ z_c. Giải thích ví dụ “[$] sleeps on [$]” và vì sao [$] học được “tóm tắt một từ”."),
+        ("6", "Cải tiến A sửa trực tiếp hàm mất mát vừa trình bày. Vấn đề: MSE không phân biệt, trong khi đánh giá là xếp hạng. Giải pháp: + λ·InfoNCE với 511 mẫu âm, τ = 0,07. Chi phí chỉ +2%/bước. Kết quả: A không tốt hơn trên FashionIQ (R@10 25,54 so với 25,90) và giảm CIRCO mAP@5 2,45 điểm — nói thẳng H1 bị bác bỏ; nguyên nhân Dũng giải thích ở slide 13. Chuyển sang Dũng: thành phần thứ hai của LinCIR là nhiễu."),
     ],
     "qa": [
         ("Kỳ vọng InfoNCE giúp xếp hạng, sao kết quả lại kém hơn?", "Kỳ vọng: InfoNCE tối ưu cosine với cặp đúng so với 511 câu khác, đúng thứ được đo khi truy xuất. Thực tế: độ nhất quán φ(ảnh)–φ(văn bản) giảm từ 0,80 xuống 0,64. InfoNCE buộc [$] mang đặc trưng giúp **phân biệt các câu văn bản**; đặc trưng này gắn với miền văn bản, không chuyển sang vector ảnh → φ khớp quá mức với văn bản, mất khả năng tổng quát qua modality gap. Ảnh hưởng nặng trên CIRCO (ảnh đời thực đa dạng) hơn FashionIQ."),
@@ -152,12 +151,12 @@ MEMBERS = {
     ],
     "check": ["Viết được L_SMP và L_NCE, giải thích từng ký hiệu.", "Giải thích bằng lời vì sao MSE không đủ cho bài toán xếp hạng.",
               "Đọc được đồ thị đường học và kết luận về 5.000 bước.", "Trả lời câu hỏi về τ, λ, batch, mẫu âm."],
-    "read": ["Báo cáo: chương 3, mục 4.1–4.2, 5.7", "Bài báo LinCIR: mục 3.1–3.2, Bảng 8–9", "van den Oord 2018 (InfoNCE): mục 2", "Pic2Word (Saito 2023), SEARLE (Baldrati 2023): phần phương pháp"],
+    "read": ["Báo cáo: mục 2.5, 3.2–3.4, 4.1–4.2, 5.7", "Bài báo LinCIR: mục 3.1–3.2, Bảng 8–9", "van den Oord 2018 (InfoNCE): mục 2", "Pic2Word (Saito 2023), SEARLE (Baldrati 2023): phần phương pháp"],
 },
 "Tung": {
     "name": "Nguyễn Xuân Tùng", "id": "B25CHHT119",
     "role": "Tái hiện: đánh giá checkpoint chính thức, đối chiếu với bài báo; phân tích khác biệt giữa bài báo và mã nguồn (cấu trúc φ, dữ liệu huấn luyện, trích từ khóa).",
-    "slides": [("10", "Kết quả tái hiện", "0:45"), ("16", "Kết luận & hạn chế", "0:45")],
+    "slides": [("11", "Kết quả tái hiện", "0:45"), ("12", "Kết quả chính + kiểm định", "1:30"), ("14", "Kết luận & hạn chế", "0:45")],
     "theory": [
         ("Giao thức đánh giá FashionIQ", [
             "Tập val: dress 2.017, shirt 2.038, toptee 1.961 truy vấn; kho ảnh tương ứng 3.817 / 6.346 / 5.373. Mỗi truy vấn có hai câu điều chỉnh, ghép “c1 and c2” và “c2 and c1”, mã hóa “a photo of [$] that …” cho cả hai thứ tự rồi lấy trung bình vector.",
@@ -181,8 +180,9 @@ MEMBERS = {
     ],
     "files": ["experiments/runs/EXP-000-official-s0/ — metrics.json, per_query_*.csv", "scripts/eval_per_query.py — đánh giá (FashionIQ, CIRCO)", "code/models.py (lớp Phi), code/loader.py (build_loader, extract_keywords_spacy)"],
     "script": [
-        ("10", "Trước khi cải tiến phải chắc đường ống đúng: đánh giá checkpoint chính thức bằng mã đã chuyển đổi. Bảng: lệch tối đa 0,77 điểm, TB R@10 +0,07. Nêu 3 khác biệt bài báo–mã nguồn và vì sao nhóm theo mã. CIRCO val là mốc tham chiếu."),
-        ("16", "Kết luận: H2 (B) được ủng hộ, H1 (A) và H3 (A+B) bị bác bỏ; tính nhất quán của φ qua modality gap quyết định chất lượng truy xuất. Hạn chế: 5.000 bước, không quét λ/α, không có CIRR, CIRCO chỉ val. Hướng phát triển: đủ 20.000 bước, quét tham số, CIRR + CIRCO test, hướng C (IDF)."),
+        ("11", "Trước khi cải tiến phải chắc đường ống đúng: đánh giá checkpoint chính thức bằng mã đã chuyển đổi. Bảng: lệch tối đa 0,77 điểm, TB R@10 +0,07. Nêu 3 khác biệt bài báo–mã nguồn và vì sao nhóm theo mã. CIRCO val là mốc tham chiếu."),
+        ("12", "So với baseline nhóm tự chạy (không so với bài báo). Bảng kết quả (mean ± std, 3 seed) và bảng kiểm định (Δ, KTC 95%, p bootstrap, p Wilcoxon). Kết luận: B tốt hơn có ý nghĩa trên FashionIQ R@10 (+0,60, p = 0,006), R@50 (+1,27, p < 0,001) và CIRCO mAP@25/50; mAP@5/10 chưa đủ bằng chứng (chỉ 220 truy vấn). A và A+B kém trên CIRCO (KTC nằm dưới 0)."),
+        ("14", "Kết luận: H2 (B) được ủng hộ, H1 (A) và H3 (A+B) bị bác bỏ; tính nhất quán của φ qua modality gap quyết định chất lượng truy xuất. Hạn chế: 5.000 bước, không quét λ/α, không có CIRR, CIRCO chỉ val. Hướng phát triển: đủ 20.000 bước, quét tham số, CIRR + CIRCO test, hướng C (IDF)."),
     ],
     "qa": [
         ("Lệch 0,77 điểm có đáng lo không?", "Không: cùng bậc với nhiễu do khác phiên bản thư viện và ảnh bản sao; có nhóm lệch dương, nhóm lệch âm, trung bình R@10 chỉ +0,07. Quan trọng là đường ống tái lập được (chạy lại giống hệt) và khớp bài báo."),
@@ -194,12 +194,12 @@ MEMBERS = {
     ],
     "check": ["Nói được bảng tái hiện từ trí nhớ (ít nhất TB R@10, R@50 và mức lệch).", "Giải thích giao thức FashionIQ (hai câu, hai thứ tự).",
               "Nêu đủ 3 khác biệt bài báo–mã nguồn và hệ quả.", "Phân biệt so với bài báo (tái hiện) và so với baseline (cải tiến)."],
-    "read": ["Báo cáo: mục 3.5, 5.2, 5.4, chương 6", "Bài báo LinCIR: Bảng 3, 5, 6 và mục 4.2", "FashionIQ (Wu 2021), CIRCO trong SEARLE (Baldrati 2023)"],
+    "read": ["Báo cáo: mục 3.5, 5.2, 5.4, 5.5, 5.6, chương 6, Kết luận", "Bài báo LinCIR: Bảng 3, 5, 6 và mục 4.2", "FashionIQ (Wu 2021), CIRCO trong SEARLE (Baldrati 2023)", "results/tables/main_results.md, significance.md (hỏi Dũng cách đọc p-value, KTC)"],
 },
 "Dung": {
     "name": "Trần Quang Đức Dũng", "id": "B25CHHT088",
     "role": "Thiết kế giao thức đánh giá theo truy vấn (R@K, mAP@K) và kiểm định thống kê (paired bootstrap, Wilcoxon); cài đặt cải tiến B (nhiễu có hướng) và phân tích modality gap.",
-    "slides": [("12", "Cải tiến B: nhiễu có hướng", "0:45"), ("14", "Kết quả chính + kiểm định", "1:30"), ("15", "Vì sao tốt hơn?", "1:30")],
+    "slides": [("7", "Nhiễu của LinCIR và cải tiến B", "1:30"), ("8", "Độ đo R@K, mAP@K", "1:00"), ("13", "Vì sao tốt hơn?", "1:30")],
     "theory": [
         ("Độ đo", [
             "Recall@K (FashionIQ, 1 ảnh đúng/truy vấn): tỷ lệ truy vấn có ảnh đích trong top-K. Liên hệ chương I: Recall = |liên quan ∩ truy xuất| / |liên quan|, áp dụng cho K kết quả đầu.",
@@ -223,9 +223,9 @@ MEMBERS = {
     "files": ["scripts/eval_per_query.py — thứ hạng từng truy vấn, mAP CIRCO", "scripts/stats_compare.py, scripts/make_report_assets.py — kiểm định, bảng, hình",
               "scripts/modality_gap.py — Δ, khoảng cách tâm, độ nhất quán φ", "code/train_phi.py (# [NHOM8] Improvement B), configs/EXP-003, EXP-004"],
     "script": [
-        ("12", "Modality gap của CLIP: tâm ảnh và tâm văn bản cách nhau 0,82 (cosine cặp chỉ 0,26). Nhiễu của LinCIR đẳng hướng; B cộng thêm α·Δ để đưa đầu vào φ về phía vùng ảnh. Δ tính trên COCO độc lập với tập đánh giá."),
-        ("14", "Bảng kết quả (mean ± std, 3 seed) và bảng kiểm định (Δ, KTC 95%, p bootstrap, p Wilcoxon). Kết luận: B tốt hơn có ý nghĩa trên FashionIQ R@10 (+0,60, p = 0,006), R@50 (+1,27, p < 0,001) và CIRCO mAP@25/50; mAP@5/10 chưa đủ bằng chứng (chỉ 220 truy vấn). A và A+B kém trên CIRCO (KTC nằm dưới 0)."),
-        ("15", "Vì sao: (1) độ nhất quán φ ảnh–văn bản theo biến thể; (2) đường học; (3) ví dụ top-5 thành công/thất bại (Nou chuẩn bị hình): độ nhất quán φ trùng thứ tự với CIRCO mAP@5; A thấp hơn baseline ở mọi mốc; ví dụ váy dài cúp ngực B xếp đúng hạng 1."),
+        ("7", "Trước hết nhắc thành phần nhiễu của LinCIR: khi suy luận φ nhận vector ảnh, nhưng ảnh và văn bản của CLIP nằm ở hai vùng khác nhau (modality gap), nên LinCIR thêm nhiễu u·ε khi huấn luyện. Modality gap của CLIP: tâm ảnh và tâm văn bản cách nhau 0,82 (cosine cặp chỉ 0,26). Nhiễu của LinCIR đẳng hướng; B cộng thêm α·Δ để đưa đầu vào φ về phía vùng ảnh. Δ tính trên COCO độc lập với tập đánh giá."),
+        ("8", "Liên hệ chương I: mô hình tìm kiếm cổ điển; Precision/Recall → R@K, mAP@K; tìm kiếm vector (xếp hạng theo cosine) khác mô hình Boolean khớp chính xác. Mở phần thực nghiệm: đây là thước đo cho mọi bảng phía sau. Chuyển sang Tâm: dựng mã và thiết lập."),
+        ("13", "Vì sao: (1) độ nhất quán φ ảnh–văn bản theo biến thể; (2) đường học; (3) ví dụ top-5 thành công/thất bại (Nou chuẩn bị hình): độ nhất quán φ trùng thứ tự với CIRCO mAP@5; A thấp hơn baseline ở mọi mốc; ví dụ váy dài cúp ngực B xếp đúng hạng 1."),
     ],
     "qa": [
         ("Vì sao dùng bootstrap thay vì t-test?", "Hiệu số theo truy vấn của Recall là 0/±1 (rời rạc), của AP lệch mạnh — không chuẩn. Bootstrap không giả định phân phối; Wilcoxon là kiểm tra chéo phi tham số."),
@@ -238,12 +238,12 @@ MEMBERS = {
     ],
     "check": ["Tự tay tính AP@5 cho một ví dụ nhỏ (3 ảnh đúng, danh sách 5 kết quả).", "Giải thích paired bootstrap bằng lời trong 30 giây.",
               "Đọc bảng kiểm định và nói kết luận cho từng biến thể.", "Giải thích Δ, α và vì sao không rò rỉ dữ liệu."],
-    "read": ["Báo cáo: mục 2.1, 2.3, 4.3, 5.3, 5.6, 5.7", "Liang 2022 (Mind the Gap): mục 2–3", "Efron & Tibshirani: chương về bootstrap; bài giảng chương I (Precision/Recall)"],
+    "read": ["Báo cáo: mục 2.1, 2.3, 3.3, 4.3, 5.3, 5.6, 5.7", "Liang 2022 (Mind the Gap): mục 2–3", "Efron & Tibshirani: chương về bootstrap; bài giảng chương I (Precision/Recall)"],
 },
 "Nou": {
     "name": "Mekdala Nounou", "id": "B25CHHT124",
     "role": "Tổng quan lý thuyết (CIR, ZS-CIR, CLIP, Pic2Word, SEARLE) và liên hệ với các độ đo IR; phân tích định tính; thiết kế slides thuyết trình.",
-    "slides": [("2", "Bài toán CIR", "1:00"), ("3", "Vì sao zero-shot?", "0:45"), ("4", "Liên hệ môn học", "1:00")],
+    "slides": [("3", "Bài toán CIR, vì sao zero-shot", "1:00"), ("4", "Ý tưởng token giả", "1:00")],
     "theory": [
         ("Truy xuất thông tin (chương I của môn học)", [
             "IR: tìm tài liệu (thường phi cấu trúc) thỏa nhu cầu thông tin từ bộ sưu tập lớn. Mô hình tìm kiếm cổ điển: nhiệm vụ → nhu cầu thông tin → truy vấn → máy tìm kiếm + bộ sưu tập → kết quả → tinh chỉnh truy vấn.",
@@ -270,9 +270,8 @@ MEMBERS = {
     ],
     "files": ["report/figures/cir_example.png — ví dụ CIR thật", "slides/khung_slides.md, slides/QA_du_kien.md", "results/figures/qualitative_fiq_*.png (sau phiên eval)", "Chapter_I.pdf (bài giảng): slide 6–8"],
     "script": [
-        ("2", "Kể ví dụ chiếc váy: ảnh tham chiếu + “màu bạc, tay ngắn hơn” → ảnh đích. Đây là truy xuất ảnh kết hợp, nhu cầu thông tin không diễn đạt trọn bằng chỉ chữ hay chỉ ảnh."),
-        ("3", "Dữ liệu bộ ba phải gán nhãn tay, nhỏ (28–46 nghìn) → mô hình có giám sát khó tổng quát → zero-shot: không dùng bộ ba."),
-        ("4", "Liên hệ chương I: mô hình tìm kiếm cổ điển; Precision/Recall → R@K, mAP@K; tìm kiếm vector (xếp hạng theo cosine) khác mô hình Boolean khớp chính xác. Chuyển sang Trung: làm sao biểu diễn ảnh thành một “từ”."),
+        ("3", "Kể ví dụ chiếc váy: ảnh tham chiếu + “màu bạc, tay ngắn hơn” → ảnh đích. Đây là truy xuất ảnh kết hợp, nhu cầu thông tin không diễn đạt trọn bằng chỉ chữ hay chỉ ảnh. Vì sao zero-shot: bộ ba phải gán nhãn tay, nhỏ (FashionIQ 46,6 nghìn, CIRR 28,8 nghìn) → mô hình có giám sát khó tổng quát → zero-shot không dùng bộ ba."),
+        ("4", "Ý tưởng: ảnh → [$] trong không gian token; câu “a photo of [$] that …” → vector truy vấn → tìm ảnh. Chỉ cần học φ. Đây là ý tưởng chung của các phương pháp zero-shot."),
     ],
     "qa": [
         ("CIR khác tìm ảnh bằng văn bản thế nào?", "Văn bản trong CIR chỉ mô tả phần thay đổi, không mô tả toàn bộ ảnh đích; hệ thống phải giữ đặc điểm của ảnh tham chiếu và áp dụng thay đổi."),
@@ -396,7 +395,7 @@ def build(key, m):
     for para in OVERVIEW:
         rich(doc.add_paragraph(), para)
     table(doc, ["Hạng mục", "Số liệu / cấu hình"], [list(k) for k in KEY_NUMBERS], [3.2, 11.8])
-    from plain_language import GLOSSARY, SLIDES, TIPS
+    from plain_language import GLOSSARY, SLIDES, SYMBOLS, TIPS
     doc.add_heading("3. Trình bày rõ ràng, dễ hiểu (đọc trước khi tập)", level=1)
     doc.add_heading("Mẹo thuyết trình", level=2)
     bullets(doc, TIPS)
@@ -405,6 +404,10 @@ def build(key, m):
           [[n, SLIDES[n][0], SLIDES[n][1]] for n, _, _ in m["slides"] if n in SLIDES], [1.2, 9.0, 4.8])
     doc.add_heading("Thuật ngữ: định nghĩa ngắn", level=2)
     table(doc, ["Thuật ngữ", "Định nghĩa", "Ví dụ trong đề tài"], [list(g) for g in GLOSSARY], [3.8, 6.2, 5.0])
+    doc.add_heading("Cách đọc ký hiệu trên slide", level=2)
+    doc.add_paragraph("Lần đầu gặp [$] trên slide, nói thêm: “ký hiệu đô-la trong ngoặc vuông là token giả”; các lần sau chỉ nói “token giả”. "
+                      "Ví dụ câu nói: “Mạng phi biến ảnh tham chiếu thành một token giả, ghép vào câu mô tả thay đổi.”")
+    table(doc, ["Ký hiệu", "Đọc là", "Nghĩa"], [list(g) for g in SYMBOLS], [2.6, 4.6, 7.8])
     doc.add_heading("4. Kiến thức và nội dung công việc", level=1)
     for title, items in m["theory"]:
         doc.add_heading(title, level=2)
