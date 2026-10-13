@@ -43,7 +43,7 @@
 | `results/figures/learning_curve.png` | `029dc54fb546cc7e` |
 | `results/figures/qualitative_fiq_1.png` | `f14ac7daa94cb5e8` |
 | `report/BaoCao_Nhom8_LinCIR.docx` | `b6c33a3fe91515ed` |
-| `slides/Slides_Nhom8_LinCIR.pptx` | `c67d862332e05ed5` |
+| `slides/Slides_Nhom8_LinCIR.pptx` | `cfe1f98d3b4c987a` |
 
 Ghi chú: `report/…docx` và `slides/…pptx` là bản Tâm sửa tay đã điền kết quả; chỉnh sửa trình bày sau khi chốt vẫn được phép nếu không đổi số liệu. 15:20 09/10/2026: chèn lại trường MỤC LỤC (bị mất từ bản 08/10), bỏ khoảng cách sau đoạn của style TOC 1/2 để mục lục vừa 1 trang; số liệu không đổi.
 
@@ -54,3 +54,5 @@ Ghi chú: `report/…docx` và `slides/…pptx` là bản Tâm sửa tay đã đ
 12/10/2026: cắt còn 15 slide (bỏ slide lộ trình, vì sao zero-shot, hạn chế Pic2Word/SEARLE, nhiễu & modality gap; nội dung gộp vào slide 2, 3, 5, 7 và lời nói); số liệu thực nghiệm không đổi.
 12/10/2026: font: theme slide và ghi chú đổi Calibri → Helvetica, dấu đầu dòng gán Helvetica, thay ký tự mũi tên (Helvetica không có) bằng › hoặc chữ; số liệu không đổi.
 12/10/2026: viết lại chữ trên slide thành câu đủ ý (bỏ viết tắt khó hiểu), nới khung thẻ slide 2, 8, 10; số liệu không đổi.
+12/10/2026: tái cấu trúc slides cho một người trình bày (Tâm) theo nhận xét kiểu giảng viên: thêm câu hỏi nghiên cứu, công thức độ đo, slide nhiễu và modality gap (0,82; 0,26 từ assets.json), giả thuyết H1–H3, hàng checkpoint chính thức trong bảng kết quả, ví dụ truy xuất; bỏ con số kết quả khỏi slide cải tiến A; số liệu không đổi.
+13/10/2026: thêm slide 2 phân công công việc (theo phụ lục báo cáo); deck 16 slide; số liệu không đổi.

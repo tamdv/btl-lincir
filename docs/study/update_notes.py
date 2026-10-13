@@ -12,7 +12,7 @@ from pptx import Presentation
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from plain_language import SLIDES  # noqa: E402
 
-SPEAKER = {"1": "Tâm", "2": "Tâm", "3": "Nou", "4": "Nou", "5": "Trung", "6": "Trung", "7": "Dũng", "8": "Dũng", "9": "Tâm", "10": "Tâm", "11": "Tùng", "12": "Tùng", "13": "Dũng", "14": "Tùng", "15": "Tâm"}
+SPEAKER = {"1": "Tâm", "2": "Tâm", "3": "Tâm", "4": "Tâm", "5": "Tâm", "6": "Tâm", "7": "Tâm", "8": "Tâm", "9": "Tâm", "10": "Tâm", "11": "Tâm", "12": "Tâm", "13": "Tâm", "14": "Tâm", "15": "Tâm", "16": "Tâm"}
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--deck", default=str(Path(__file__).resolve().parents[2] / "slides" / "Slides_Nhom8_LinCIR.pptx"))

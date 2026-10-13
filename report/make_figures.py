@@ -60,7 +60,8 @@ def cir_example(fiq, scale=1.0, suffix=""):
     plt.close(fig)
 
 
-def lincir_train(scale=1.0, suffix=""):
+def lincir_train(scale=1.0, suffix="", base=False):
+    """base=True: original LinCIR only (no group changes A, B) for the method slide"""
     fig, ax = plt.subplots(figsize=(10 * scale, 4.6 * scale))
     ax.set_xlim(0, 10.15)
     ax.set_ylim(0, 4.7)
@@ -70,7 +71,7 @@ def lincir_train(scale=1.0, suffix=""):
     arrow(ax, 2.3, 3.8, 2.7, 3.8)
     box(ax, 5.4, 3.4, 1.2, 0.8, "z_c", DATA, fs=11, bold=True)
     arrow(ax, 5.05, 3.8, 5.4, 3.8)
-    box(ax, 5.15, 2.05, 1.7, 0.8, "+ nhiễu n\nU(0,1)·N(0,I)\n(+ α·Δ — B)", NEW, fs=8)
+    box(ax, 5.15, 2.05, 1.7, 0.8, "+ nhiễu n = u·ε\nu ~ U(0,1)\nε ~ N(0, I)" if base else "+ nhiễu n\nU(0,1)·N(0,I)\n(+ α·Δ — B)", DATA if base else NEW, fs=8)
     arrow(ax, 6.0, 3.4, 6.0, 2.85)
     box(ax, 7.3, 2.05, 1.5, 0.8, "φ (MLP 3 lớp)\nhuấn luyện", TRAIN, bold=True)
     arrow(ax, 6.85, 2.45, 7.3, 2.45)
@@ -84,11 +85,11 @@ def lincir_train(scale=1.0, suffix=""):
     arrow(ax, 7.3, 1.0, 5.05, 1.0, "thay [$] bằng ê_c")
     box(ax, 5.4, 0.05, 1.2, 0.55, "ẑ_c", DATA, fs=11, bold=True)
     arrow(ax, 3.9, 0.6, 5.4, 0.33)
-    box(ax, 8.7, 3.4, 1.4, 0.8, "MSE(z_c, ẑ_c)\n+ λ·InfoNCE (A)", NEW, fs=8)
+    box(ax, 8.7, 3.4, 1.4, 0.8, "MSE(z_c, ẑ_c)" if base else "MSE(z_c, ẑ_c)\n+ λ·InfoNCE (A)", DATA if base else NEW, fs=9 if base else 8)
     arrow(ax, 6.6, 3.8, 8.7, 3.8, color="#888888", ls="--")
     ax.plot([6.6, 9.4], [0.33, 0.33], color="#888888", lw=1.2, ls="--")
     arrow(ax, 9.4, 0.33, 9.4, 3.4, color="#888888", ls="--")
-    ax.text(0.1, 4.45, "Xanh dương: đóng băng · Cam: được huấn luyện · Xanh lá: phần nhóm bổ sung", fontsize=8, color="#555555")
+    ax.text(0.1, 4.45, "Xanh dương: đóng băng · Cam: được huấn luyện" + ("" if base else " · Xanh lá: phần nhóm bổ sung"), fontsize=8, color="#555555")
     fig.savefig(OUT / f"lincir_train{suffix}.png", dpi=200 / scale, bbox_inches="tight")
     plt.close(fig)
 
@@ -129,5 +130,6 @@ if __name__ == "__main__":
     # slide versions: smaller canvas -> text ~1.6x larger once stretched to slide width
     cir_example(a.fiq, 0.8, "_slide")
     lincir_train(0.88, "_slide")
+    lincir_train(0.88, "_base_slide", base=True)
     lincir_infer(0.9, "_slide")
     print(sorted(p.name for p in OUT.glob("*.png")))

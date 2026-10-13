@@ -11,7 +11,8 @@ Tái hiện, cải tiến và đánh giá **LinCIR** (*Language-only Efficient T
 | Tài liệu | File |
 |---|---|
 | Báo cáo (30 trang) | [BaoCao_Nhom8_LinCIR.pdf](report/BaoCao_Nhom8_LinCIR.pdf) · [.docx](report/BaoCao_Nhom8_LinCIR.docx) |
-| Slides thuyết trình (15 slide, có ghi chú người nói) | [Slides_Nhom8_LinCIR.pdf](slides/Slides_Nhom8_LinCIR.pdf) · [.pptx](slides/Slides_Nhom8_LinCIR.pptx) |
+| Slides thuyết trình (16 slide, Tâm trình bày, có ghi chú lời nói) | [Slides_Nhom8_LinCIR.pdf](slides/Slides_Nhom8_LinCIR.pdf) · [.pptx](slides/Slides_Nhom8_LinCIR.pptx) |
+| Kịch bản thuyết trình của Tâm (lời nói từng slide, số liệu Kaggle) | [KichBan_ThuyetTrinh_Tam.pdf](slides/KichBan_ThuyetTrinh_Tam.pdf) · [.docx](slides/KichBan_ThuyetTrinh_Tam.docx) |
 | Câu hỏi phản biện dự kiến | [slides/QA_du_kien.md](slides/QA_du_kien.md) |
 | Khung nội dung slides | [slides/khung_slides.md](slides/khung_slides.md) |
 | Tài liệu học riêng từng người | [Tâm](docs/study/HuongDan_Tam.pdf) · [Trung](docs/study/HuongDan_Trung.pdf) · [Tùng](docs/study/HuongDan_Tung.pdf) · [Dũng](docs/study/HuongDan_Dung.pdf) · [Nou](docs/study/HuongDan_Nou.pdf) (bản .docx cùng thư mục [docs/study/](docs/study/)) |
@@ -39,43 +40,42 @@ Trung bình 3 seed (12345, 2024, 7), 5.000 bước, cùng cấu hình cho mọi 
 - **Giả thuyết:** H2 (B tốt hơn) được ủng hộ; H1 (A tốt hơn) và H3 (A+B tốt nhất) bị bác bỏ.
 - **Tái hiện:** checkpoint chính thức lệch bài báo tối đa 0,77 điểm; encoder viết lại lệch CLIP gốc 0,00.
 
-## Thứ tự thuyết trình (khoảng 15 phút, 15 slide)
+## Thứ tự thuyết trình (Tâm trình bày, khoảng 15 phút, 16 slide)
 
-Tâm mở đầu: tóm tắt bài báo (nói về gì, giải quyết vấn đề gì, kết quả ra sao) và lộ trình của nhóm từ bài báo đến kết luận — đây là cơ sở cho mọi phần sau. Sau đó lần lượt các thành viên, mỗi người nói một khối liền theo thứ tự chương của báo cáo: bài toán → phương pháp → hai cải tiến → thực nghiệm → kết quả → phân tích, đánh giá.
+**Tâm trình bày toàn bộ**; các thành viên khác hỗ trợ trả lời phản biện cho phần việc của mình. Mạch trình bày: phân công → bài toán và câu hỏi của nhóm → độ đo → ý tưởng token giả → tóm tắt bài báo → hai thành phần của LinCIR (SMP, nhiễu) → hai cải tiến kèm giả thuyết H1–H3 → dựng mã và thực nghiệm → tái hiện → kết quả, kiểm định → phân tích nguyên nhân → kết luận.
 
-| Slide | Nội dung (tiêu đề trên slide) | Người trình bày | Thời gian |
+| Slide | Nội dung (tiêu đề trên slide) | Thời gian | Hỗ trợ trả lời |
 |---|---|---|---|
-| 1 | Bìa, giới thiệu nhóm | Tâm | 0:20 |
-| 2 | Bài báo LinCIR: huấn luyện truy xuất ảnh kết hợp chỉ bằng văn bản (kèm lộ trình của nhóm) | Tâm | 1:15 |
-| 3 | Truy vấn gồm một ảnh tham chiếu và một câu mô tả thay đổi | Nou | 1:00 |
-| 4 | Ảnh được biến thành một "từ giả" [$] trong câu truy vấn | Nou | 1:00 |
-| 5 | LinCIR học từ giả chỉ bằng văn bản nhờ Self-Masking Projection | Trung | 1:30 |
-| 6 | Cải tiến A: thêm InfoNCE để từ giả phân biệt được các câu | Trung | 1:00 |
-| 7 | Cải tiến B: dịch nhiễu theo hướng của modality gap | Dũng | 1:30 |
-| 8 | CIR là truy xuất có xếp hạng, đo bằng R@K và mAP@K | Dũng | 1:00 |
-| 9 | Mã nguồn chạy trên môi trường mới với sai lệch bằng 0 | Tâm | 1:00 |
-| 10 | Mọi biến thể dùng cùng cấu hình, 3 seed và kiểm định theo truy vấn | Tâm | 0:45 |
-| 11 | Checkpoint chính thức tái hiện khớp bài báo, lệch tối đa 0,77 điểm | Tùng | 0:45 |
-| 12 | Nhiễu có hướng (B) tốt hơn LinCIR, InfoNCE (A) làm giảm hiệu năng | Tùng | 1:30 |
-| 13 | Vì sao: B làm φ nhất quán hơn giữa ảnh và văn bản, A làm ngược lại | Dũng | 1:30 |
-| 14 | Kết luận: tính nhất quán qua modality gap quyết định chất lượng | Tùng | 0:45 |
-| 15 | Cảm ơn, hỏi đáp (Tâm điều phối, chuyển câu hỏi cho đúng người) | Tâm | — |
+| 1 | Bìa, giới thiệu nhóm | 0:20 | — |
+| 2 | Phân công công việc của nhóm | 0:30 | — |
+| 3 | Truy vấn gồm một ảnh tham chiếu và một câu mô tả thay đổi | 1:00 | Nou |
+| 4 | CIR là truy xuất có xếp hạng, đo bằng R@K và mAP@K | 1:00 | Nou, Dũng |
+| 5 | Ảnh được biến thành một "từ giả" [$] trong câu truy vấn | 0:50 | Nou |
+| 6 | Bài báo LinCIR: huấn luyện truy xuất ảnh kết hợp chỉ bằng văn bản | 1:00 | Nou, Tùng |
+| 7 | LinCIR học từ giả chỉ bằng văn bản nhờ Self-Masking Projection | 1:20 | Trung |
+| 8 | Nhiễu giúp φ dùng được vector ảnh dù hai miền lệch nhau | 1:00 | Dũng |
+| 9 | Cải tiến A: thêm InfoNCE để từ giả phân biệt được các câu | 1:00 | Trung |
+| 10 | Cải tiến B: dịch nhiễu theo hướng của modality gap | 1:00 | Dũng |
+| 11 | Dựng lại mã nguồn và chạy 4 biến thể × 3 seed trên Kaggle | 1:00 | Tâm |
+| 12 | Checkpoint chính thức tái hiện khớp bài báo, lệch tối đa 0,77 điểm | 0:50 | Tùng |
+| 13 | Nhiễu có hướng (B) tốt hơn LinCIR, InfoNCE (A) làm giảm hiệu năng | 1:30 | Tùng, Dũng |
+| 14 | Vì sao: B làm φ nhất quán hơn giữa ảnh và văn bản, A làm ngược lại | 1:20 | Dũng, Trung |
+| 15 | Kết luận: H2 được ủng hộ, H1 và H3 bị bác bỏ | 1:20 | Tùng, Nou |
+| 16 | Cảm ơn, hỏi đáp (Tâm điều phối, mời thành viên phụ trách trả lời) | — | — |
 
-Thời lượng: Dũng ≈ 4:00 · Tâm ≈ 3:20 (và điều phối hỏi đáp) · Tùng ≈ 3:00 · Trung ≈ 2:30 · Nou ≈ 2:00.
+Mời trả lời khi phản biện: phương pháp, cải tiến A, đường học → Trung; tái hiện, bảng kết quả, kết luận → Tùng; độ đo, kiểm định, cải tiến B, modality gap → Dũng; bài toán, lý thuyết, ví dụ định tính → Nou; mã nguồn, Kaggle → Tâm.
 
-Chuyển câu hỏi khi phản biện: phương pháp, cải tiến A → Trung; tái hiện, bảng kết quả, kết luận → Tùng; độ đo, kiểm định, cải tiến B, cơ chế → Dũng; bài toán, lý thuyết, ví dụ định tính → Nou; tóm tắt bài báo, mã nguồn, Kaggle, thiết lập → Tâm.
-
-Lời nói cho từng slide nằm trong phần ghi chú (Notes) của file .pptx, mỗi đoạn có tên người nói ở đầu. Chi tiết nội dung từng slide: [slides/khung_slides.md](slides/khung_slides.md).
+Lời nói cho từng slide nằm trong phần ghi chú (Notes) của file .pptx; kịch bản chi tiết trong [HuongDan_Tam.pdf](docs/study/HuongDan_Tam.pdf). Nội dung từng slide: [slides/khung_slides.md](slides/khung_slides.md).
 
 ## Phân công: mỗi người cần đọc hiểu gì để trình bày
 
-Mỗi người đọc **tài liệu học riêng** (file PDF ở bảng Truy cập nhanh) trước. Tài liệu đó có: lý thuyết, lời nói từng slide, thuật ngữ, câu hỏi phản biện kèm trả lời và danh sách tự kiểm tra. Phần dưới đây là tóm tắt để biết cần đọc gì và nắm chắc điều gì.
+Mỗi người đọc **tài liệu học riêng** (file PDF ở bảng Truy cập nhanh) trước. Tài liệu của Tâm có kịch bản cả 15 slide; tài liệu của các thành viên khác có các slide liên quan để hỗ trợ trả lời. Mỗi tài liệu có: lý thuyết, ý chính từng slide, thuật ngữ, câu hỏi phản biện kèm trả lời và danh sách tự kiểm tra. Phần dưới đây là tóm tắt để biết cần đọc gì và nắm chắc điều gì.
 
 ### Đào Văn Tâm — Chuyển đổi mã nguồn và vận hành thực nghiệm trên Kaggle
 
-**Nhiệm vụ:** chuyển mã LinCIR sang môi trường mới và kiểm chứng tương đương với mô hình gốc; lập lịch chạy song song trên Kaggle trong hạn mức GPU, khắc phục nghẽn nạp dữ liệu. Mở đầu buổi thuyết trình: tóm tắt bài báo và lộ trình.
+**Nhiệm vụ:** chuyển mã LinCIR sang môi trường mới và kiểm chứng tương đương với mô hình gốc; lập lịch chạy song song trên Kaggle trong hạn mức GPU, khắc phục nghẽn nạp dữ liệu. Trình bày toàn bộ buổi thuyết trình.
 
-**Trình bày:** slide 1, 2, 9, 10 và điều phối hỏi đáp (slide 15) · **Tài liệu học:** [HuongDan_Tam.pdf](docs/study/HuongDan_Tam.pdf)
+**Trình bày:** toàn bộ 16 slide và điều phối hỏi đáp · **Tài liệu học:** [HuongDan_Tam.pdf](docs/study/HuongDan_Tam.pdf)
 
 **Cần đọc**
 - Báo cáo: chương 1, mục 3.1, 3.5, 5.1, 5.3; [docs/decisions.md](docs/decisions.md)
@@ -88,15 +88,15 @@ Mỗi người đọc **tài liệu học riêng** (file PDF ở bảng Truy c�
 - Tốc độ: 4,5 giây/bước → 1,45 giây/bước (khoảng 2 giờ/run) nhờ chạy spaCy theo lô và bỏ NER, lemmatizer. Từ khóa trích ra giống hệt mã cũ.
 - Kaggle: 2 GPU T4, 30 giờ/tuần, phiên tối đa 12 giờ. Mỗi GPU chạy một run độc lập để giữ batch 512 cho mọi biến thể (quan trọng với InfoNCE).
 - Vì sao 5.000 bước thay vì 20.000: 20.000 bước mất khoảng 13 giờ/run, vượt giới hạn phiên; mọi biến thể dùng cùng số bước nên so sánh vẫn công bằng.
-- Tóm tắt bài báo (slide 2): Gu, Chun, Kim, Kang, Yun (NAVER), CVPR 2024. Vấn đề: bộ ba CIR gán nhãn tay đắt và nhỏ (46,6k, 28,8k); Pic2Word, SEARLE cần ảnh khi huấn luyện và chỉ học câu mẫu cố định. Ý tưởng: Self-Masking Projection học φ chỉ từ văn bản, thêm nhiễu u·ε để φ dùng được cho vector ảnh. Kết quả bài báo: tốt nhất trên 4 benchmark (CIRCO, GeneCIS, FashionIQ, CIRR), nhanh hơn Pic2Word 6,0 lần và SEARLE 8,4 lần với ViT-L, ViT-G huấn luyện 48 phút trên 8 A100, vượt cả phương pháp có giám sát trên FashionIQ.
-- Lộ trình (dòng cuối slide 2): dựng mã → tái hiện → baseline, A, B, A+B trên Kaggle (3 seed) → kiểm định → phân tích. Nêu trước kết luận chính: B tốt hơn có ý nghĩa thống kê, A làm giảm hiệu năng. Nắm bảng "Kết quả cần nhớ" ở đầu file này.
+- Tóm tắt bài báo (slide 6): Gu, Chun, Kim, Kang, Yun (NAVER), CVPR 2024. Vấn đề: bộ ba CIR gán nhãn tay đắt và nhỏ (46,6k, 28,8k); Pic2Word, SEARLE cần ảnh khi huấn luyện và chỉ học câu mẫu cố định. Ý tưởng: Self-Masking Projection học φ chỉ từ văn bản, thêm nhiễu u·ε để φ dùng được cho vector ảnh. Kết quả bài báo: tốt nhất trên 4 benchmark (CIRCO, GeneCIS, FashionIQ, CIRR), nhanh hơn Pic2Word 6,0 lần và SEARLE 8,4 lần với ViT-L, ViT-G huấn luyện 48 phút trên 8 A100, vượt cả phương pháp có giám sát trên FashionIQ.
+- Câu hỏi của nhóm (slide 3): sửa hàm mất mát (A) hoặc sửa nhiễu (B) có giúp LinCIR tốt hơn không; giả thuyết H1–H3 ở slide 9–10. Nêu trước kết luận chính: B tốt hơn có ý nghĩa thống kê, A làm giảm hiệu năng. Nắm bảng "Kết quả cần nhớ" ở đầu file này.
 - Điều phối hỏi đáp: nghe hết câu hỏi, chuyển cho đúng người theo danh sách ở phần Thứ tự thuyết trình.
 
 ### Lâm Thành Trung — Cải tiến A (InfoNCE) và đường học
 
-**Nhiệm vụ:** đề xuất và cài đặt cải tiến A (thêm InfoNCE vào SMP); phân tích đường học theo số bước huấn luyện. Đồng thời trình bày Self-Masking Projection (mở đầu bằng hạn chế của Pic2Word/SEARLE).
+**Nhiệm vụ:** đề xuất và cài đặt cải tiến A (thêm InfoNCE vào SMP); phân tích đường học theo số bước huấn luyện.
 
-**Trình bày:** slide 5, 6 · **Tài liệu học:** [HuongDan_Trung.pdf](docs/study/HuongDan_Trung.pdf)
+**Hỗ trợ phản biện:** slide 7 (SMP), 9 (cải tiến A), 14 (đường học) · **Tài liệu học:** [HuongDan_Trung.pdf](docs/study/HuongDan_Trung.pdf)
 
 **Cần đọc**
 - Báo cáo: mục 2.5, 3.2–3.4, 4.1–4.2, 5.7
@@ -105,16 +105,16 @@ Mỗi người đọc **tài liệu học riêng** (file PDF ở bảng Truy c�
 
 **Phải nắm chắc**
 - Self-Masking Projection: che từ khóa trong câu, thay bằng [$] = φ(z_c), huấn luyện bằng MSE giữa vector câu gốc z_c và vector câu đã che ẑ_c. Hoàn toàn không cần ảnh.
-- Pic2Word, SEARLE (nói ở đầu slide 5): cần chạy bộ mã hóa ảnh khi huấn luyện (ảnh CC3M khoảng 430 GB, chú thích chỉ 125 MB) và chỉ học câu mẫu cố định "a photo of [$]"; LinCIR bỏ cả hai hạn chế này.
+- Pic2Word, SEARLE (slide 6): cần chạy bộ mã hóa ảnh khi huấn luyện (ảnh CC3M khoảng 430 GB, chú thích chỉ 125 MB) và chỉ học câu mẫu cố định "a photo of [$]"; LinCIR bỏ cả hai hạn chế này.
 - Cải tiến A: L = MSE + 0,5·InfoNCE, τ = 0,07, mẫu âm là 511 câu khác trong batch. Giữ MSE để [$] không trôi khỏi phân phối token thật.
 - Kết quả âm: CIRCO mAP@5 giảm 2,45 điểm, cosine φ(ảnh)–φ(văn bản) giảm 0,80 → 0,64. Lý do: InfoNCE buộc [$] mang đặc trưng phân biệt các câu, các đặc trưng này gắn với miền văn bản.
 - Đường học: R@10 chỉ tăng 0,25 điểm từ 4.000 đến 5.000 bước; A thấp hơn baseline ở mọi mốc, nên kết luận không phụ thuộc điểm dừng.
 
 ### Nguyễn Xuân Tùng — Tái hiện và khác biệt giữa bài báo và mã nguồn
 
-**Nhiệm vụ:** đánh giá checkpoint chính thức, đối chiếu với bài báo; phân tích khác biệt giữa bài báo và mã nguồn. Đồng thời trình bày bảng kết quả chính, kiểm định và kết luận.
+**Nhiệm vụ:** đánh giá checkpoint chính thức, đối chiếu với bài báo; phân tích khác biệt giữa bài báo và mã nguồn.
 
-**Trình bày:** slide 11, 12, 14 · **Tài liệu học:** [HuongDan_Tung.pdf](docs/study/HuongDan_Tung.pdf)
+**Hỗ trợ phản biện:** slide 6 (bài báo), 12 (tái hiện), 13 (kết quả), 15 (kết luận) · **Tài liệu học:** [HuongDan_Tung.pdf](docs/study/HuongDan_Tung.pdf)
 
 **Cần đọc**
 - Báo cáo: mục 3.5, 5.2, 5.4, 5.5, 5.6, chương 6, Kết luận
@@ -126,15 +126,15 @@ Mỗi người đọc **tài liệu học riêng** (file PDF ở bảng Truy c�
 - Dữ liệu: FashionIQ val đủ 15.415/15.415 ảnh (bản sao HuggingFace), CIRCO val 220 truy vấn trên 123.403 ảnh COCO. CIRR bị bỏ vì chưa được duyệt NLVR2.
 - 3 khác biệt bài báo–mã nguồn: φ không có LayerNorm (checkpoint cũng không có); dữ liệu huấn luyện có thêm Midjourney prompts; cách trích từ khóa bằng spaCy. Nhóm tái hiện theo mã vì mã tạo ra số liệu của bài báo.
 - Phân biệt hai loại so sánh: so với bài báo là kiểm tra tái hiện; so với baseline nhóm tự chạy là đánh giá cải tiến.
-- Slide 12 (bảng kết quả chính): so với baseline nhóm tự chạy, không so với bài báo. B tốt hơn có ý nghĩa ở FashionIQ R@10 (+0,60, p = 0,006) và R@50 (+1,27, p < 0,001); A và A+B có KTC 95% trên CIRCO nằm dưới 0. Đọc được mean ± std, Δ, KTC 95%, p (hỏi Dũng cách giải thích).
-- Kết luận (slide 14): H2 được ủng hộ, H1 và H3 bị bác bỏ; chất lượng phụ thuộc vào việc φ xử lý ảnh nhất quán với văn bản; B chỉ 5.000 bước nhưng vượt checkpoint 20.000 bước.
+- Bảng kết quả chính (slide 13): so với baseline nhóm tự chạy, không so với bài báo. B tốt hơn có ý nghĩa ở FashionIQ R@10 (+0,60, p = 0,006) và R@50 (+1,27, p < 0,001); A và A+B có KTC 95% trên CIRCO nằm dưới 0. Đọc được mean ± std, Δ, KTC 95%, p (hỏi Dũng cách giải thích).
+- Kết luận (slide 15): H2 được ủng hộ, H1 và H3 bị bác bỏ; chất lượng phụ thuộc vào việc φ xử lý ảnh nhất quán với văn bản; B chỉ 5.000 bước nhưng vượt checkpoint 20.000 bước.
 - Hạn chế và hướng phát triển (chương 6): 5.000 bước, chưa quét λ và α, chỉ 220 truy vấn CIRCO, chưa có CIRR → đủ 20.000 bước, quét λ/α, CIRR và CIRCO test, hướng C theo IDF.
 
 ### Trần Quang Đức Dũng — Giao thức đánh giá, kiểm định, cải tiến B
 
 **Nhiệm vụ:** thiết kế đánh giá theo truy vấn (R@K, mAP@K) và kiểm định thống kê (paired bootstrap, Wilcoxon); cài đặt cải tiến B (nhiễu có hướng) và phân tích modality gap.
 
-**Trình bày:** slide 7, 8, 13 · **Tài liệu học:** [HuongDan_Dung.pdf](docs/study/HuongDan_Dung.pdf)
+**Hỗ trợ phản biện:** slide 4 (độ đo), 8 (nhiễu), 10 (cải tiến B), 13 (kiểm định), 14 (cơ chế) · **Tài liệu học:** [HuongDan_Dung.pdf](docs/study/HuongDan_Dung.pdf)
 
 **Cần đọc**
 - Báo cáo: mục 2.1, 2.3, 3.3, 4.3, 5.3, 5.6, 5.7
@@ -143,7 +143,7 @@ Mỗi người đọc **tài liệu học riêng** (file PDF ở bảng Truy c�
 - Kết quả: [main_results.md](results/tables/main_results.md), [significance.md](results/tables/significance.md), [modality_gap.png](results/figures/modality_gap.png)
 
 **Phải nắm chắc**
-- Slide 7 (phần đầu): vector ảnh và văn bản của CLIP nằm ở hai vùng tách biệt (cosine ảnh–chú thích chỉ 0,26); LinCIR thêm nhiễu n = u·ε (u ~ U[0,1], ε ~ N(0,I)) để φ chịu được độ lệch này.
+- Nhiễu và modality gap (slide 8): vector ảnh và văn bản của CLIP nằm ở hai vùng tách biệt (cosine ảnh–chú thích chỉ 0,26); LinCIR thêm nhiễu n = u·ε (u ~ U[0,1], ε ~ N(0,I)) để φ chịu được độ lệch này.
 - Cải tiến B: n = 0,5·Δ + u·ε, với Δ = trung bình vector ảnh − trung bình vector văn bản trên 5.000 cặp COCO val2017 (‖Δ‖ = 13,87). COCO val2017 khác tập ảnh COCO unlabeled2017 của CIRCO, nên không rò rỉ dữ liệu.
 - Tự tính được R@K (FashionIQ, 1 ảnh đúng) và AP@K (CIRCO, nhiều ảnh đúng) cho một ví dụ nhỏ.
 - Paired bootstrap 10.000 lần trên hiệu số theo truy vấn, Wilcoxon kiểm tra chéo. Dùng bootstrap vì hiệu số Recall rời rạc, AP lệch, không chuẩn.
@@ -152,9 +152,9 @@ Mỗi người đọc **tài liệu học riêng** (file PDF ở bảng Truy c�
 
 ### Mekdala Nounou — Lý thuyết, phân tích định tính, slides
 
-**Nhiệm vụ:** tổng quan lý thuyết (CIR, ZS-CIR, CLIP, Pic2Word, SEARLE) và liên hệ với các độ đo IR; phân tích định tính; thiết kế slides. Trình bày bài toán CIR (kèm vì sao cần zero-shot) và ý tưởng token giả.
+**Nhiệm vụ:** tổng quan lý thuyết (CIR, ZS-CIR, CLIP, Pic2Word, SEARLE) và liên hệ với các độ đo IR; phân tích định tính; thiết kế slides.
 
-**Trình bày:** slide 3, 4 · **Tài liệu học:** [HuongDan_Nou.pdf](docs/study/HuongDan_Nou.pdf)
+**Hỗ trợ phản biện:** slide 3 (bài toán), 4 (liên hệ chương I), 5 (token giả), 6 (Pic2Word, SEARLE), 15 (ví dụ định tính) · **Tài liệu học:** [HuongDan_Nou.pdf](docs/study/HuongDan_Nou.pdf)
 
 **Cần đọc**
 - Báo cáo: chương 1–2, mục 5.8
@@ -164,10 +164,10 @@ Mỗi người đọc **tài liệu học riêng** (file PDF ở bảng Truy c�
 
 **Phải nắm chắc**
 - Bài toán CIR (slide 3): truy vấn = ảnh tham chiếu + câu mô tả thay đổi; câu chỉ mô tả phần thay đổi, không mô tả toàn bộ ảnh đích.
-- Zero-shot (nói ở slide 3): không dùng bộ ba (ảnh tham chiếu, câu, ảnh đích) có nhãn khi huấn luyện, vì loại dữ liệu này đắt và nhỏ.
-- Token giả (slide 4): ảnh tham chiếu → φ → token [$], ghép vào câu "a photo of [$] that …", bộ mã hóa văn bản tạo vector truy vấn; chỉ cần học φ.
-- Pic2Word, SEARLE: đã biểu diễn ảnh thành từ giả nhưng chỉ học với câu mẫu cố định và cần ảnh khi huấn luyện (Tâm nêu ở slide 2, Trung nhắc ở slide 5).
-- Độ đo Recall@K và mAP@K (Dũng trình bày ở slide 8, Nou cần hiểu để trả lời câu hỏi liên hệ môn học).
+- Zero-shot (slide 3): không dùng bộ ba (ảnh tham chiếu, câu, ảnh đích) có nhãn khi huấn luyện, vì loại dữ liệu này đắt và nhỏ.
+- Token giả (slide 6): ảnh tham chiếu → φ → token [$], ghép vào câu "a photo of [$] that …", bộ mã hóa văn bản tạo vector truy vấn; chỉ cần học φ.
+- Pic2Word, SEARLE: đã biểu diễn ảnh thành từ giả nhưng chỉ học với câu mẫu cố định và cần ảnh khi huấn luyện (slide 6).
+- Độ đo Recall@K và mAP@K (slide 4, Nou cần hiểu để trả lời câu hỏi liên hệ môn học).
 - Tìm kiếm vector (cosine, kết quả có xếp hạng) khác chỉ mục ngược (khớp từ chính xác).
 - CLIP: học đối sánh trên 400 triệu cặp ảnh–chú thích, đưa ảnh và văn bản vào cùng không gian vector.
 - Ví dụ định tính (Hình 5.3): B xếp đúng ảnh đích ở vị trí 1; nhiều ảnh trong top-5 đúng phần lớn yêu cầu nhưng không được gán nhãn (âm tính giả).
