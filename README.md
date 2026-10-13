@@ -6,6 +6,61 @@ Tái hiện, cải tiến và đánh giá **LinCIR** (*Language-only Efficient T
 - **Thành viên:** Đào Văn Tâm B25CHHT112 (trưởng nhóm) · Lâm Thành Trung B25CHHT117 · Nguyễn Xuân Tùng B25CHHT119 · Trần Quang Đức Dũng B25CHHT088 · Mekdala Nounou B25CHHT124
 - **Quy tắc làm việc, bản đồ code, lệnh chạy:** [CLAUDE.md](CLAUDE.md)
 
+## Tóm tắt dễ hiểu
+
+### Bài báo nói về điều gì
+
+**Bài toán.** Bạn đang xem ảnh một chiếc váy hoa màu xanh trên trang bán hàng. Bạn muốn tìm một chiếc gần giống nhưng có thêm vài thay đổi, và gõ: "màu bạc, bóng hơn, tay ngắn hơn". Hệ thống phải tìm trong hàng chục nghìn ảnh ra chiếc váy vừa giữ kiểu dáng của ảnh ban đầu, vừa có đúng các thay đổi đó. Bài toán tìm kiếm bằng một ảnh kèm một câu mô tả thay đổi như vậy gọi là **truy xuất ảnh kết hợp**.
+
+Bài toán này khó vì câu "màu bạc, tay ngắn hơn" không tự mô tả được chiếc váy cần tìm. Nó chỉ có nghĩa khi đặt cạnh ảnh ban đầu. Hệ thống phải hiểu cả ảnh lẫn câu cùng lúc.
+
+**Cách làm cũ và chỗ tốn kém.** Cách đơn giản là thuê người tạo dữ liệu mẫu: mỗi mẫu gồm ảnh ban đầu, câu mô tả thay đổi và ảnh đúng cần tìm. Việc này rất tốn công, nên bộ dữ liệu lớn nhất cũng chỉ có khoảng 46 nghìn mẫu. Mô hình học từ dữ liệu thời trang thì cũng chỉ dùng tốt cho thời trang.
+
+Một số phương pháp gần đây tránh được việc thuê người gán nhãn. Ý tưởng chung là đổi ảnh ban đầu thành một "từ đặc biệt", rồi ghép từ đó vào câu tìm kiếm, ví dụ: "ảnh của [từ đặc biệt], màu bạc, tay ngắn hơn". Một mô hình có sẵn tên CLIP, vốn đã được huấn luyện trên hàng trăm triệu cặp ảnh và câu, sẽ biến câu này thành con số rồi so với từng ảnh trong kho. Chỉ cần dạy một mạng nhỏ (gọi là φ) cách đổi ảnh thành từ đặc biệt.
+
+Tuy vậy, các phương pháp trước vẫn dùng ảnh khi dạy mạng φ. Việc này nặng: bộ ảnh huấn luyện chiếm khoảng 430 GB, trong khi phần chữ đi kèm chỉ 125 MB. Chúng cũng chỉ học với một mẫu câu cố định.
+
+**Ý tưởng của LinCIR.** Tác giả (công ty NAVER, Hàn Quốc, công bố năm 2024) đề xuất dạy mạng φ **chỉ bằng chữ, không cần ảnh**. Cách làm:
+
+1. Lấy một câu, ví dụ "con mèo xám ngủ trên gối".
+2. Che các từ quan trọng, câu thành "[…] ngủ trên […]".
+3. Cho mạng φ đọc câu gốc rồi tạo ra một từ đặc biệt điền vào chỗ trống.
+4. Yêu cầu câu đã điền phải mang nghĩa giống câu gốc.
+
+Muốn làm được, mạng φ phải học cách gói nội dung chính của cả câu vào một từ. Khi dùng thật, đưa ảnh vào thay cho câu, mạng φ tạo ra từ đặc biệt đại diện cho ảnh.
+
+Có một trở ngại: trong CLIP, con số biểu diễn ảnh và con số biểu diễn chữ nằm ở hai vùng khác nhau, dù cùng nói về một thứ. Mạng φ học trên chữ nhưng lại phải xử lý ảnh. Tác giả giải quyết bằng cách thêm nhiễu ngẫu nhiên vào đầu vào khi huấn luyện, để mạng quen với những đầu vào lệch khỏi vùng chữ.
+
+**Kết quả bài báo.** LinCIR đạt kết quả tốt nhất trên bốn bộ đánh giá, huấn luyện nhanh hơn các phương pháp trước 6 đến 8 lần, và trên bộ thời trang còn vượt một phương pháp phải dùng dữ liệu do người gán nhãn.
+
+### Nhóm 8 đã làm gì
+
+**1. Dựng lại và kiểm tra.** Mã nguồn của tác giả viết cho phiên bản thư viện cũ, không chạy được trên máy hiện nay. Nhóm viết lại phần bị hỏng, sửa 4 lỗi, rồi kiểm tra: phần viết lại cho ra con số giống hệt bản gốc. Sau đó nhóm chạy lại mô hình tác giả công bố bằng mã của nhóm. Kết quả khớp bài báo, lệch không quá 0,77 điểm. Như vậy cách đánh giá của nhóm đáng tin.
+
+**2. Đặt câu hỏi.** LinCIR có hai thành phần chính: cách chấm điểm khi dạy mạng φ, và phần nhiễu. Nhóm hỏi: sửa một trong hai thành phần này thì kết quả có tốt hơn không?
+
+**3. Hai cải tiến.**
+
+- **Cải tiến A (sửa cách chấm điểm).** Cách chấm gốc chỉ yêu cầu câu đã điền giống câu gốc. Nó không phạt trường hợp câu đã điền cũng giống nhiều câu khác. Nhóm thêm một yêu cầu: câu đã điền phải giống câu gốc **hơn** 511 câu khác đang xét cùng lúc. Kỳ vọng là mạng φ phân biệt rõ hơn, nên tìm kiếm chính xác hơn.
+- **Cải tiến B (sửa phần nhiễu).** Nhiễu gốc lệch ngẫu nhiên theo mọi hướng. Nhóm đo hướng từ vùng chữ sang vùng ảnh, rồi cho nhiễu lệch có chủ đích về phía vùng ảnh. Khi đó mạng φ được luyện với đầu vào gần với ảnh thật mà nó sẽ gặp khi dùng.
+- **Kết hợp A+B** để xem hai cải tiến có cộng thêm cho nhau không.
+
+**4. Thử nghiệm công bằng.** Nhóm chạy cả bốn phiên bản (bản gốc, A, B, A+B) với cùng điều kiện, mỗi phiên bản 3 lần với khởi tạo ngẫu nhiên khác nhau, tổng cộng 12 lần. Thực nghiệm chạy trên máy chủ GPU miễn phí của Kaggle, dùng gần 23 trên 30 giờ được phép mỗi tuần. Kết quả được đánh giá trên hai bộ dữ liệu: thời trang (FashionIQ) và ảnh đời thực (CIRCO). Mọi chênh lệch đều được kiểm định thống kê để chắc rằng không do ngẫu nhiên.
+
+### Kết quả
+
+- **Cải tiến B tốt hơn bản gốc, và có ý nghĩa thống kê.** Trên bộ thời trang, cứ 1.000 lượt tìm kiếm thì B tìm đúng thêm khoảng 6 lượt trong 10 kết quả đầu. B chỉ huấn luyện bằng một phần tư thời gian nhưng vẫn vượt cả mô hình tác giả công bố.
+- **Cải tiến A làm kết quả kém đi,** rõ nhất trên ảnh đời thực (điểm giảm từ 10,47 xuống 8,02). A+B cũng kém.
+
+**Vì sao.** Nhóm đưa cùng một cặp ảnh và câu mô tả vào mạng φ, rồi đo hai đầu ra giống nhau đến mức nào:
+
+- Với B, hai đầu ra giống nhau nhất: mạng xử lý ảnh nhất quán với cách nó xử lý chữ.
+- Với A, độ giống giảm mạnh. Yêu cầu "phân biệt với 511 câu khác" khiến mạng học những chi tiết chỉ có ở chữ, mà ảnh không có.
+
+**Kết luận của nhóm.** Với LinCIR, điều quan trọng nhất là mạng φ xử lý ảnh nhất quán với chữ. Làm cho mạng phân biệt các câu tốt hơn thì không giúp ích. Kết luận này có số đo trực tiếp và kiểm định thống kê làm căn cứ, không phải phỏng đoán.
+
+Phần kỹ thuật chi tiết (số liệu, kiểm định, thuật ngữ) ở các mục bên dưới, trong [báo cáo](report/BaoCao_Nhom8_LinCIR.pdf) và [kịch bản thuyết trình](slides/KichBan_ThuyetTrinh_Tam.pdf).
+
 ## Truy cập nhanh
 
 | Tài liệu | File |
