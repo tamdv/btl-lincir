@@ -48,7 +48,7 @@ MEMBERS = {
 "Tam": {
     "name": "Đào Văn Tâm", "id": "B25CHHT112",
     "role": "Trình bày toàn bộ 16 slide (khoảng 15 phút) và điều phối hỏi đáp. Phần việc riêng: chuyển đổi mã nguồn LinCIR sang môi trường mới, kiểm chứng tương đương với mô hình gốc; vận hành thực nghiệm trên Kaggle: lập lịch chạy song song trong hạn mức GPU, khắc phục nghẽn nạp dữ liệu.",
-    "slides": [("1", "Bìa, giới thiệu nhóm", "0:20"), ("2", "Phân công công việc", "0:30"), ("3", "Bài toán CIR, câu hỏi của nhóm", "1:00"), ("4", "Độ đo R@K, mAP@K (liên hệ chương I)", "1:00"), ("5", "Ý tưởng token giả", "0:50"), ("6", "Tóm tắt bài báo LinCIR", "1:00"), ("7", "Self-Masking Projection", "1:20"), ("8", "Nhiễu và modality gap", "1:00"), ("9", "Cải tiến A: InfoNCE (H1)", "1:00"), ("10", "Cải tiến B: nhiễu có hướng (H2, H3)", "1:00"), ("11", "Dựng mã nguồn, chạy trên Kaggle", "1:00"), ("12", "Tái hiện, khác biệt bài báo – mã nguồn", "0:50"), ("13", "Kết quả chính, kiểm định", "1:30"), ("14", "Vì sao: độ nhất quán của φ", "1:20"), ("15", "Kết luận H1–H3, ví dụ truy xuất", "1:20"), ("16", "Hỏi đáp", "—")],
+    "slides": [("1", "Bìa, giới thiệu và tóm tắt dễ hiểu", "1:10"), ("2", "Phân công công việc", "0:30"), ("3", "Bài toán CIR, câu hỏi của nhóm", "1:00"), ("4", "Độ đo R@K, mAP@K (liên hệ chương I)", "1:00"), ("5", "Ý tưởng token giả", "0:50"), ("6", "Tóm tắt bài báo LinCIR", "1:00"), ("7", "Self-Masking Projection", "1:20"), ("8", "Nhiễu và modality gap", "1:00"), ("9", "Cải tiến A: InfoNCE (H1)", "1:00"), ("10", "Cải tiến B: nhiễu có hướng (H2, H3)", "1:00"), ("11", "Dựng mã nguồn, chạy trên Kaggle", "1:00"), ("12", "Tái hiện, khác biệt bài báo – mã nguồn", "0:50"), ("13", "Kết quả chính, kiểm định", "1:30"), ("14", "Vì sao: độ nhất quán của φ", "1:20"), ("15", "Kết luận H1–H3, ví dụ truy xuất", "1:20"), ("16", "Hỏi đáp", "—")],
     "theory": [
         ("Bộ mã hóa văn bản của CLIP", [
             "Câu → tokenizer BPE → chuỗi mã token (tối đa 77, bắt đầu 49406, kết thúc EOS 49407) → lớp nhúng token + nhúng vị trí → 12 khối Transformer có **mặt nạ nhân quả** (mỗi token chỉ nhìn các token phía trước) → LayerNorm cuối → lấy vector tại vị trí EOS → phép chiếu tuyến tính → vector văn bản z_c (768 chiều với ViT-L).",
@@ -83,7 +83,7 @@ MEMBERS = {
               "scripts/run_experiment.py, scripts/kaggle_jobs.py, notebooks/kaggle_lincir.ipynb — chạy thí nghiệm, lập lịch, carry-forward",
               "docs/decisions.md — lý do của từng quyết định"],
     "script": [
-        ("1", 'Giới thiệu đề tài, môn học, giảng viên và 5 thành viên; nói rõ Tâm trình bày, cả nhóm cùng trả lời câu hỏi.'),
+        ("1", "Giới thiệu đề tài, giảng viên, nhóm; tóm tắt khoảng 1 phút bằng ngôn ngữ thường (xem mục Tóm tắt dễ hiểu): ví dụ chiếc váy → bài toán; LinCIR học chỉ bằng văn bản, nhanh hơn 6–8 lần; nhóm dựng lại mã, B tốt hơn có ý nghĩa thống kê, A kém đi; nêu lộ trình trình bày."),
         ("2", "Đọc bảng phân công: mỗi thành viên phụ trách một phần (Tâm: mã nguồn, Kaggle; Trung: cải tiến A, đường học; Tùng: tái hiện; Dũng: đánh giá, kiểm định, cải tiến B; Nou: lý thuyết, định tính, slides). Nói rõ khi hỏi đáp sẽ mời người phụ trách trả lời."),
         ("3", 'Bài toán CIR qua ví dụ chiếc váy: ảnh tham chiếu + câu “is shiny and silver with shorter sleeves” → ảnh đích; câu chỉ mô tả phần thay đổi. Bộ ba gán nhãn đắt và ít (46,6 nghìn, 28,8 nghìn) nên cần zero-shot. Bài báo LinCIR giải bài toán này chỉ bằng văn bản. Nêu câu hỏi của nhóm: sửa hàm mất mát (A) hay sửa nhiễu (B) có giúp LinCIR tốt hơn không.'),
         ("4", 'Liên hệ chương I: CIR vẫn là truy xuất có xếp hạng. R@K = tỉ lệ truy vấn có ảnh đích trong K kết quả đầu (FashionIQ, 1 ảnh đúng). AP@K = Σ P@k·rel(k) / min(K, số ảnh đúng), mAP@K = trung bình trên truy vấn (CIRCO, nhiều ảnh đúng). Khác chương I: so khớp vector bằng cosine thay vì khớp từ. Giao thức: FashionIQ val, CIRCO val, kiểm định bootstrap và Wilcoxon theo từng truy vấn.'),
@@ -386,6 +386,25 @@ def bullets(doc, items):
         rich(doc.add_paragraph(style="List Bullet"), it)
 
 
+def plain_summary(doc):
+    """[NHOM8] the plain-language summary, taken from README.md section "Tóm tắt dễ hiểu" (single source)"""
+    text = (Path(__file__).resolve().parents[2] / "README.md").read_text()
+    sec = text.split("## Tóm tắt dễ hiểu", 1)[1].split("\n## ", 1)[0]
+    doc.add_heading("Tóm tắt dễ hiểu (đọc đầu tiên)", level=2)
+    for line in sec.strip().splitlines():
+        line = line.strip()
+        if not line or line.startswith("Phần kỹ thuật chi tiết"):
+            continue
+        if line.startswith("### "):
+            doc.add_heading(line[4:], level=3)
+        elif line.startswith("- "):
+            rich(doc.add_paragraph(style="List Bullet"), line[2:])
+        elif re.match(r"\d+\. ", line):
+            rich(doc.add_paragraph(style="List Number"), re.sub(r"^\d+\. ", "", line))
+        else:
+            rich(doc.add_paragraph(), line)
+
+
 def build(key, m):
     doc = docx.Document()
     setup(doc)
@@ -407,6 +426,8 @@ def build(key, m):
              "khi Tâm mời, trả lời ngắn, nêu số liệu và nguồn (bảng nào trong báo cáo).")
     table(doc, ["Slide", "Nội dung", "Thời gian" if solo else "Người trình bày"], [list(s) for s in m["slides"]], [1.6, 11.0, 2.4])
     doc.add_heading("2. Bức tranh chung của đề tài (cả nhóm cần nắm)", level=1)
+    plain_summary(doc)
+    doc.add_heading("Tóm tắt kỹ thuật", level=2)
     for para in OVERVIEW:
         rich(doc.add_paragraph(), para)
     table(doc, ["Hạng mục", "Số liệu / cấu hình"], [list(k) for k in KEY_NUMBERS], [3.2, 11.8])

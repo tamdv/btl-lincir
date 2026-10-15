@@ -101,7 +101,7 @@ Trung bình 3 seed (12345, 2024, 7), 5.000 bước, cùng cấu hình cho mọi 
 
 | Slide | Nội dung (tiêu đề trên slide) | Thời gian | Hỗ trợ trả lời |
 |---|---|---|---|
-| 1 | Bìa, giới thiệu nhóm | 0:20 | — |
+| 1 | Bìa, giới thiệu và tóm tắt dễ hiểu (ví dụ chiếc váy, bài báo làm gì, nhóm làm gì) | 1:10 | — |
 | 2 | Phân công công việc của nhóm | 0:30 | — |
 | 3 | Truy vấn gồm một ảnh tham chiếu và một câu mô tả thay đổi | 1:00 | Nou |
 | 4 | CIR là truy xuất có xếp hạng, đo bằng R@K và mAP@K | 1:00 | Nou, Dũng |

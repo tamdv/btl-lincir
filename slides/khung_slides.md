@@ -5,7 +5,7 @@ Hình dùng lại từ `report/figures/` và `results/figures/`.
 
 | # | Tiêu đề | Nội dung chính | Hình/bảng | Người trình bày | Thời gian |
 |---|---|---|---|---|---|
-| 1 | Bìa | Đề tài, môn học, giảng viên, 5 thành viên | — | Tâm | 0:20 |
+| 1 | Bìa | Đề tài, giảng viên, 5 thành viên; lời nói: tóm tắt dễ hiểu khoảng 1 phút (ví dụ chiếc váy, LinCIR học chỉ bằng văn bản, B tốt hơn, A kém đi) | — | Tâm | 1:10 |
 | 2 | Phân công công việc | Bảng 5 thành viên: công việc chính, slide hỗ trợ trả lời | bảng | Tâm | 0:30 |
 | 3 | Bài toán CIR, câu hỏi của nhóm | Ví dụ chiếc váy; bài báo LinCIR giải bài toán chỉ bằng văn bản; câu hỏi: sửa hàm mất mát (A) hay sửa nhiễu (B) có giúp LinCIR tốt hơn | `report/figures/cir_example.png` | Tâm | 1:00 |
 | 4 | Độ đo (liên hệ chương I) | R@K = số truy vấn có ảnh đích trong top-K / tổng số truy vấn; AP@K = Σ P@k·rel(k) / min(K, số ảnh đúng); giao thức FashionIQ val, CIRCO val, bootstrap + Wilcoxon | 3 thẻ | Tâm | 1:00 |

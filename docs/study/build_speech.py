@@ -26,9 +26,9 @@ PACE = 160  # spoken Vietnamese syllables per minute (calm pace)
 
 # per slide: (spoken paragraphs, transition sentence to the next slide)
 SPEECH = {
-    1: (["Em chào cô và các bạn. Em là Đào Văn Tâm, đại diện Nhóm 8, lớp M25CQHT02-B. Đề tài của nhóm là tái hiện và cải tiến "
-         "phương pháp LinCIR, công bố tại hội nghị CVPR 2024, với tên đầy đủ: huấn luyện hiệu quả chỉ bằng văn bản cho bài toán "
-         "truy xuất ảnh kết hợp zero-shot. Em xin trình bày trong khoảng mười lăm phút."],
+    1: (['Em chào cô và các bạn. Em là Đào Văn Tâm, đại diện Nhóm 8, lớp M25CQHT02-B. Đề tài của nhóm là tái hiện và cải tiến phương pháp LinCIR, công bố tại hội nghị CVPR 2024.',
+         'Trước khi vào chi tiết, em xin tóm tắt bằng một ví dụ. Khi xem ảnh một chiếc váy trên trang bán hàng, người dùng có thể muốn tìm chiếc gần giống nhưng “màu bạc, tay ngắn hơn”. Hệ thống phải hiểu cả ảnh lẫn câu để tìm đúng chiếc váy đó; bài toán này gọi là truy xuất ảnh kết hợp. Bài báo LinCIR dạy máy làm việc này chỉ bằng văn bản, không cần ảnh và không cần người gán nhãn, nên huấn luyện nhanh hơn các cách trước 6 đến 8 lần.',
+         'Nhóm em dựng lại mã nguồn, kiểm tra kết quả khớp bài báo, rồi thử hai cải tiến. Cải tiến B, cho phần nhiễu khi huấn luyện lệch có chủ đích về phía ảnh, tốt hơn bản gốc có ý nghĩa thống kê. Cải tiến A, bắt mô hình phân biệt các câu rõ hơn, lại làm kết quả kém đi. Phần trình bày sẽ đi lần lượt qua bài toán, phương pháp, hai cải tiến, thực nghiệm và lý do của kết quả, trong khoảng mười lăm phút.'],
         "Trước hết, em xin giới thiệu cách nhóm chia công việc."),
     2: (["Nhóm có năm thành viên, mỗi người phụ trách một phần. Em phụ trách chuyển đổi mã nguồn sang môi trường mới, kiểm chứng "
          "mã chạy đúng như bản gốc và vận hành toàn bộ thực nghiệm trên Kaggle. Bạn Trung đề xuất và cài đặt cải tiến A, đồng thời "
@@ -290,6 +290,34 @@ def add_annotated(doc, text, seen, indent=True, italic=False, color=None):
     return q
 
 
+def rich(q, text):
+    for part in re.split(r"(\*\*[^*]+\*\*)", text):
+        if part:
+            r = q.add_run(part[2:-2] if part.startswith("**") else part)
+            r.bold = part.startswith("**")
+
+
+def plain_summary(doc):
+    """the plain-language summary from README.md section "Tóm tắt dễ hiểu" (single source)"""
+    sec = (ROOT / "README.md").read_text().split("## Tóm tắt dễ hiểu", 1)[1].split("\n## ", 1)[0]
+    doc.add_heading("Tóm tắt dễ hiểu (đọc trước khi tập)", level=1)
+    doc.add_paragraph("Nắm phần này trước để nói tự nhiên: khi trình bày, giải thích bằng ngôn ngữ thường trước rồi mới gọi tên thuật ngữ.")
+    for line in sec.strip().splitlines():
+        line = line.strip()
+        if not line or line.startswith("Phần kỹ thuật chi tiết"):
+            continue
+        if line.startswith("### "):
+            doc.add_heading(line[4:], level=2)
+        elif line.startswith("- "):
+            rich(doc.add_paragraph(style="List Bullet"), line[2:])
+        elif re.match(r"\d+\. ", line):
+            rich(doc.add_paragraph(style="List Number"), re.sub(r"^\d+\. ", "", line))
+        else:
+            q = doc.add_paragraph()
+            q.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+            rich(q, line)
+
+
 def syllables(t):
     return len(t.split())
 
@@ -370,7 +398,7 @@ def main():
               f"Thời lượng ước tính theo tốc độ nói khoảng {PACE} tiếng/phút: tổng khoảng {mmss(total)}. Đọc thành tiếng 2–3 lần, "
               "bấm giờ; nếu dài hơn 16 phút, rút gọn đoạn thứ ba của slide 11 (chi tiết Kaggle) và giữ các con số chính.",
               "Một số chi tiết không có trên slide nhưng có trong lời nói (cấu hình và số giờ chạy Kaggle ở slide 11, ví dụ câu ở slide 3 và 7). "
-              "Bảng số liệu Kaggle đầy đủ ở Phụ lục A; thuật ngữ, tên riêng, viết tắt ở Phụ lục B; ký hiệu ở Phụ lục C.",
+              "Đọc mục “Tóm tắt dễ hiểu” ngay sau bảng này trước khi tập. Bảng số liệu Kaggle đầy đủ ở Phụ lục A; thuật ngữ, tên riêng, viết tắt ở Phụ lục B; ký hiệu ở Phụ lục C.",
               "Chữ xám nhỏ trong ngoặc vuông là chú thích (cách đọc, viết tắt của gì, nghĩa) ở lần đầu một thuật ngữ xuất hiện; "
               "không đọc phần này thành tiếng."]:
         doc.add_paragraph(t, style="List Bullet")
@@ -381,6 +409,7 @@ def main():
         rows.append([i, titles[i - 1], mmss(times[i - 1]), mmss(acc)])
     table(doc, ["Slide", "Tiêu đề", "Thời lượng", "Mốc"], rows, [1.4, 11.0, 2.0, 1.8])
 
+    plain_summary(doc)
     doc.add_heading("Lời trình bày theo từng slide", level=1)
     seen = set()
     acc = 0
